@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "target": "esnext",
+    "lib": ["esnext", "DOM"],
+    "types": ["node"],
+    "jsx": "react",
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "outDir": "dist",
+    "rootDir": ".",
+    "allowImportingTsExtensions": true,
+    "noEmit": true
+  },
+  "include": ["src", "types", "src/template"],
+  "exclude": ["dist"]
+}
