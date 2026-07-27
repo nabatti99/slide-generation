@@ -4,7 +4,9 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "build": "tsc && node src/index.ts",
+    "build": "tsc && node \"src/Chương 1/index.ts\"",
+    "build:ch1": "tsc && node \"src/Chương 1/index.ts\"",
+    "build:ch2": "tsc && node \"src/Chương 2/index.ts\"",
     "format": "prettier --write ."
   },
   "keywords": [],

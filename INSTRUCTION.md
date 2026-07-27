@@ -6,27 +6,38 @@ Tài liệu này cung cấp hướng dẫn chi tiết từng bước cho AI ho�
 
 ## 1. CẤU TRÚC FOLDER VÀ QUY TẮC ĐẶT FILE
 
-Dự án áp dụng quy tắc đồng bộ 1-1 giữa thư mục chứa tài liệu nội dung (`content/`) và thư mục chứa code định nghĩa slide (`src/slides/`):
+Dự án áp dụng quy tắc đồng bộ cấu trúc thư mục giữa thư mục chứa tài liệu nội dung (`content/`) và thư mục chứa code định nghĩa slide (`src/Chương X/slides/`):
 
 ```text
 ├── content/                     # Chứa tài liệu Markdown gốc
-│   └── Chương 1/
+│   ├── Chương 1/
+│   │   ├── Giới thiệu.md
+│   │   └── 1.1. Một số khái niệm/
+│   │       ├── Mở đầu.md
+│   │       └── 1.1.1. Khai phá dữ liệu.md
+│   └── Chương 2/
 │       ├── Giới thiệu.md
-│       └── 1.1. Một số khái niệm/
-│           ├── Mở đầu.md
-│           └── 1.1.1. Khai phá dữ liệu.md
+│       └── 2.1. Tổng quan nhận biết dữ liệu và tiền xử lý dữ liệu/
+│           └── Mở đầu.md
 │
 └── src/
-    ├── index.ts                 # File cấu hình nạp các slide để xuất PPTX
     ├── slide-generator.ts       # Nhân lõi quản lý thực thể PptxGenJS
     ├── utils.ts                 # Các hàm chuyển đổi đơn vị đo (cm ↔ inch)
     ├── template/
     │   └── due-template.ts      # Đăng ký Master Slide (TITLE, OBJECTIVE, SECTION, CONTENT)
-    └── slides/                  # Code định nghĩa slide (cấu trúc giống hệt content/)
-        ├── Giới thiệu.ts
-        └── 1.1. Một số khái niệm/
-            ├── Mở đầu.ts
-            └── 1.1.1. Khai phá dữ liệu.ts
+    ├── Chương 1/                # Thư mục quản lý Chương 1
+    │   ├── index.ts             # File cấu hình nạp slide để xuất PPTX Chương 1
+    │   └── slides/              # Code định nghĩa slide Chương 1
+    │       ├── Giới thiệu.ts
+    │       └── 1.1. Một số khái niệm/
+    │           ├── Mở đầu.ts
+    │           └── 1.1.1. Khai phá dữ liệu.ts
+    └── Chương 2/                # Thư mục quản lý Chương 2
+        ├── index.ts             # File cấu hình nạp slide để xuất PPTX Chương 2
+        └── slides/              # Code định nghĩa slide Chương 2
+            ├── Giới thiệu.ts
+            └── 2.1. Tổng quan nhận biết dữ liệu và tiền xử lý dữ liệu/
+                └── Mở đầu.ts
 ```
 
 ---
@@ -184,7 +195,7 @@ slide.addNotes("Ghi chú giảng viên:\n- Cho học viên thảo luận nhóm..
 ## 5. QUY TRÌNH XUẤT FILE PPTX
 
 1. **Đăng ký import file slide**:
-   Nạp đường dẫn các slide của bạn vào `src/index.ts` để trình tạo ghi nhận slide khi biên dịch:
+   Nạp đường dẫn các slide của bạn vào file `index.ts` tương ứng trong từng thư mục chương (ví dụ: `src/Chương 1/index.ts`) để trình tạo ghi nhận slide khi biên dịch:
    ```typescript
    import "./slides/Giới thiệu.ts";
    import "./slides/1.1. Một số khái niệm/Mở đầu.ts";
