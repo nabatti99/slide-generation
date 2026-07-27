@@ -6,10 +6,6 @@ dist
 # Ignore the output video from Git but not videos you import into src/.
 build
 
-# Contents
-content/*
-!content/.gitkeep
-
 # Generated output
 output/*
 !output/.gitkeep
