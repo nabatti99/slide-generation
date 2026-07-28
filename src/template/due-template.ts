@@ -679,40 +679,20 @@ export function addText(
     text: string | PptxGenJS.default.TextProps[],
     options: PptxGenJS.default.TextPropsOptions,
 ) {
-    // 1pt x = 0.025 cm
-    // 1pt y = 0.048 cm
-    const currentFontSize = options.fontSize! as number;
-    const currentX = inchToCm(options.x! as number);
-    const currentY = inchToCm(options.y! as number);
-    const currentW = inchToCm(options.w! as number);
-    const currentH = inchToCm(options.h! as number);
-    const currentMargin = (options.margin || 0) as number;
-
-    const oneLineHeight = currentFontSize * 0.048;
-
-    const lines = text.toString().split("\n");
-    let numberOfLines = lines.length;
-    for (const line of lines) {
-        const lineWidth = line.length * currentFontSize * 0.025;
-        const numberOfLinesForThisLine = Math.ceil(lineWidth / currentW);
-        numberOfLines += numberOfLinesForThisLine - 1;
-    }
-
-    const minHeight = numberOfLines * oneLineHeight;
-    const textHeight = Math.max(minHeight, currentH);
-
-    const height = cmToInch(textHeight) + ptToInch(currentMargin * 2); // Convert margin from cm to pt to inch
+    const currentFontSize = (options.fontSize || 12) as number;
+    const currentMargin = (options.margin !== undefined ? options.margin : 10) as number;
 
     const baseOptions: PptxGenJS.default.TextPropsOptions = {
         fontFace: DUE_FONTS.bodyFont,
-        fontSize: 16,
+        fontSize: 12,
         margin: currentMargin,
         color: DUE_COLORS.darkText,
         align: "left",
         valign: "top",
+        lineSpacing: Math.round(currentFontSize * 1.30),
     };
 
-    const finalOptions = { ...baseOptions, ...options, h: height };
+    const finalOptions = { ...baseOptions, ...options };
     slide.addText(text, finalOptions);
 
     return finalOptions;

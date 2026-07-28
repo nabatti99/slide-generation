@@ -7,6 +7,7 @@
     "build": "tsc && node \"src/Chương 1/index.ts\"",
     "build:ch1": "tsc && node \"src/Chương 1/index.ts\"",
     "build:ch2": "tsc && node \"src/Chương 2/index.ts\"",
+    "build:ch5": "tsc && node \"src/Chương 5/index.ts\"",
     "format": "prettier --write ."
   },
   "keywords": [],
