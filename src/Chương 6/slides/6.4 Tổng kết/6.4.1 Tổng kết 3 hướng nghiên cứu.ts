@@ -1,5 +1,5 @@
 import { SlideGenerator } from "../../../slide-generator.ts";
-import { addText, DUE_COLORS } from "../../../template/due-template.ts";
+import { addSectionText, addTable, addText, DUE_COLORS } from "../../../template/due-template.ts";
 import { cmToInch } from "../../../utils.ts";
 
 const pptx = SlideGenerator.pptx;
@@ -9,13 +9,10 @@ const pptx = SlideGenerator.pptx;
 // ----------------------------------------------------
 const slide123Section = pptx.addSlide({ masterName: "SECTION" });
 slide123Section.addText("CHƯƠNG 6 – CÁC HƯỚNG NGHIÊN CỨU TRONG KPDL", { placeholder: "footer" });
-slide123Section.addText("6.4.1. TỔNG KẾT BA HƯỚNG NGHIÊN CỨU", { placeholder: "title" });
-slide123Section.addText("Nhìn lại toàn bộ Chương 6 qua một khung tư duy duy nhất", { placeholder: "content" });
-slide123Section.addText(
-  "\"Ba hướng nghiên cứu không tách rời mà là ba lát cắt của cùng một bài toán khai phá dữ liệu thực tế.\"\n\n" +
-  "Khung 3 Câu hỏi  |  Bản đồ Liên kết  |  3 Thông điệp Cốt lõi",
-  { placeholder: "subContent" }
-);
+addSectionText(slide123Section, "title", "6.4.1. TỔNG KẾT BA HƯỚNG NGHIÊN CỨU");
+addSectionText(slide123Section, "content", "Nhìn lại toàn bộ Chương 6 qua một khung tư duy duy nhất");
+addSectionText(slide123Section, "subContent", "\"Ba hướng nghiên cứu không tách rời mà là ba lát cắt của cùng một bài toán khai phá dữ liệu thực tế.\"\n\n" +
+  "Khung 3 Câu hỏi  |  Bản đồ Liên kết  |  3 Thông điệp Cốt lõi");
 
 // ----------------------------------------------------
 // Slide 124: CONTENT (KHUNG TỔNG HỢP 3 HƯỚNG NGHIÊN CỨU)
@@ -27,7 +24,7 @@ slide124Content.addText("KHUNG TỔNG HỢP 3 HƯỚNG NGHIÊN CỨU", { placeho
 addText(
   slide124Content,
   [
-    { text: "🧩 3 Hướng Nghiên cứu Đan xen:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🧩 3 Hướng Nghiên cứu Đan xen:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• 6.1 Hướng Dữ liệu (CÁI GÌ?):\n", options: { bold: true } },
     { text: "  Vượt ra ngoài dữ liệu bảng ➔ Chuỗi, Đồ thị/Mạng, Văn bản/Không gian.\n\n" },
     { text: "• 6.2 Hướng Kỹ thuật (BẰNG GÌ?):\n", options: { bold: true } },
@@ -39,9 +36,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -54,7 +51,7 @@ addText(
 addText(
   slide124Content,
   [
-    { text: "🎯 Điểm Giao nhau Thực tế:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🎯 Điểm Giao nhau Thực tế:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Không độc lập tách rời: ", options: { bold: true } },
     { text: "Mỗi bài toán kinh doanh thực tế (6.3) luôn đòi hỏi chọn đúng Loại dữ liệu (6.1) và Kỹ thuật phù hợp (6.2).\n\n" },
     { text: "• Giao điểm 3 vòng tròn: ", options: { bold: true, color: DUE_COLORS.green } },
@@ -64,9 +61,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -82,16 +79,16 @@ addText(
   "💡 Thông điệp chốt: Ba hướng nghiên cứu là ba lát cắt bổ trợ cho nhau của cùng một quy trình Khai phá tri thức.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -108,50 +105,50 @@ const slide125Content = pptx.addSlide({ masterName: "CONTENT" });
 slide125Content.addText("CHƯƠNG 6 – CÁC HƯỚNG NGHIÊN CỨU TRONG KPDL", { placeholder: "footer" });
 slide125Content.addText("BẢN ĐỒ LIÊN KẾT: ỨNG DỤNG ↔ KỸ THUẬT", { placeholder: "title" });
 
-slide125Content.addTable(
+addTable(slide125Content, 
   [
     [
-      { text: "Ứng dụng Ngành (6.3)", options: { bold: true, fill: { color: DUE_COLORS.blue }, color: DUE_COLORS.white } },
-      { text: "Loại Dữ liệu sử dụng (6.1)", options: { bold: true, fill: { color: DUE_COLORS.blue }, color: DUE_COLORS.white } },
-      { text: "Kỹ thuật Khai phá sử dụng (6.2)", options: { bold: true, fill: { color: DUE_COLORS.blue }, color: DUE_COLORS.white } },
+      { text: "Ứng dụng (6.3)", options: { bold: true, fill: { color: DUE_COLORS.blue }, color: DUE_COLORS.white } },
+      { text: "Dữ liệu (6.1)", options: { bold: true, fill: { color: DUE_COLORS.blue }, color: DUE_COLORS.white } },
+      { text: "Kỹ thuật (6.2)", options: { bold: true, fill: { color: DUE_COLORS.blue }, color: DUE_COLORS.white } },
     ],
     [
-      { text: "Chấm điểm tín dụng (Tài chính)", options: { bold: true, color: DUE_COLORS.orange } },
-      { text: "Dữ liệu bảng, chuỗi giao dịch" },
-      { text: "Hồi quy Logistic, Cây quyết định (6.2.1)" },
+      { text: "Chấm điểm tín dụng", options: { bold: true, color: DUE_COLORS.orange } },
+      { text: "Bảng, chuỗi giao dịch" },
+      { text: "Logistic, cây quyết định" },
     ],
     [
-      { text: "Phát hiện Gian lận / Rửa tiền", options: { bold: true, color: DUE_COLORS.green } },
-      { text: "Mạng giao dịch (Đồ thị), Chuỗi" },
-      { text: "Graph Mining (6.1.2), Outlier Detection" },
+      { text: "Gian lận / rửa tiền", options: { bold: true, color: DUE_COLORS.green } },
+      { text: "Mạng giao dịch, chuỗi" },
+      { text: "Graph mining, outlier" },
     ],
     [
-      { text: "Gợi ý Sản phẩm & Churn Bán lẻ", options: { bold: true, color: DUE_COLORS.blue } },
-      { text: "Chuỗi hành vi mua, Ma trận Utility" },
-      { text: "Luật kết hợp Ch.5, Collaborative Filtering" },
+      { text: "Gợi ý sản phẩm bán lẻ", options: { bold: true, color: DUE_COLORS.blue } },
+      { text: "Chuỗi mua, ma trận utility" },
+      { text: "Luật kết hợp, lọc cộng tác" },
     ],
     [
-      { text: "Dự đoán Churn Viễn thông", options: { bold: true, color: DUE_COLORS.orange } },
-      { text: "Dữ liệu bảng cước, Chuỗi cuộc gọi" },
-      { text: "Phân lớp (Ch.3), Survival Analysis (6.2.1)" },
+      { text: "Churn viễn thông", options: { bold: true, color: DUE_COLORS.orange } },
+      { text: "Bảng cước, chuỗi cuộc gọi" },
+      { text: "Phân lớp, survival analysis" },
     ],
     [
-      { text: "Phát hiện Xâm nhập An ninh", options: { bold: true, color: DUE_COLORS.green } },
-      { text: "Chuỗi log, Mạng lưu lượng" },
-      { text: "Phân lớp bất thường, Isolation Forest" },
+      { text: "Phát hiện xâm nhập", options: { bold: true, color: DUE_COLORS.green } },
+      { text: "Chuỗi log, mạng lưu lượng" },
+      { text: "Outlier, Isolation Forest" },
     ],
     [
-      { text: "Phân tích Tâm lý Thị trường", options: { bold: true, color: DUE_COLORS.blue } },
-      { text: "Văn bản (review, báo chí, MXH)" },
-      { text: "TF-IDF, Sentiment Analysis, PhoBERT" },
+      { text: "Tâm lý thị trường", options: { bold: true, color: DUE_COLORS.blue } },
+      { text: "Văn bản review, báo chí" },
+      { text: "TF-IDF, sentiment, PhoBERT" },
     ],
   ],
   {
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(23.8),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     border: { pt: 1, color: "CCCCCC" },
   }
 );
@@ -161,16 +158,16 @@ addText(
   "💡 Đóng trọn vẹn tình huống mở đầu: Công ty Chứng khoán ứng dụng trọn vẹn Chuỗi (6.1.1) + Mạng (6.1.2) + Sentiment (6.1.3).",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -190,7 +187,7 @@ slide126Content.addText("BA THÔNG ĐIỆP CỐT LÕI CHƯƠNG 6", { placeholder
 addText(
   slide126Content,
   [
-    { text: "🔑 3 Thông điệp Cốt lõi của Chương 6:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🔑 3 Thông điệp Cốt lõi của Chương 6:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "1. Nguyên tắc vàng biến đổi về số: ", options: { bold: true, color: DUE_COLORS.green } },
     { text: "Mọi dữ liệu phức tạp (chuỗi, mạng, văn bản) đều biến đổi thành vector số để tái dùng kỹ thuật Ch.3–5.\n\n" },
     { text: "2. Kỹ thuật cũ không mất đi, chỉ được mở rộng: ", options: { bold: true, color: DUE_COLORS.blue } },
@@ -202,9 +199,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -217,7 +214,7 @@ addText(
 addText(
   slide126Content,
   [
-    { text: "🎓 Vai trò của Nhà quản lý Tương lai:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🎓 Vai trò của Nhà quản lý Tương lai:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "Học viên Thạc sĩ Kinh tế cần thành thạo 3 việc:\n\n" },
     { text: "• 1. Đặt đúng bài toán nghiệp vụ.\n" },
     { text: "• 2. Chọn đúng kỹ thuật khai phá phù hợp.\n" },
@@ -227,9 +224,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.orange, width: 1 },
@@ -245,16 +242,16 @@ addText(
   "💡 Thông điệp đúc kết: Thành công của dự án dữ liệu đến từ sự kết hợp giữa Năng lực Kỹ thuật và Tư duy Quản trị.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }

@@ -1,5 +1,5 @@
 import { SlideGenerator } from "../../../slide-generator.ts";
-import { addText, DUE_COLORS } from "../../../template/due-template.ts";
+import { addSectionText, addTable, addText, DUE_COLORS } from "../../../template/due-template.ts";
 import { cmToInch } from "../../../utils.ts";
 
 const pptx = SlideGenerator.pptx;
@@ -9,13 +9,10 @@ const pptx = SlideGenerator.pptx;
 // ----------------------------------------------------
 const slide21Section = pptx.addSlide({ masterName: "SECTION" });
 slide21Section.addText("CHƯƠNG 6 – CÁC HƯỚNG NGHIÊN CỨU TRONG KPDL", { placeholder: "footer" });
-slide21Section.addText("6.1.2. KHAI PHÁ DỮ LIỆU ĐỒ THỊ VÀ MẠNG", { placeholder: "title" });
-slide21Section.addText("Giải quyết Nguồn 2 của tình huống mở đầu: mạng sở hữu chéo các công ty niêm yết", { placeholder: "content" });
-slide21Section.addText(
-  "\"Trong dữ liệu mạng, giá trị không nằm trong từng đối tượng — mà nằm ở QUAN HỆ giữa các đối tượng.\"\n\n" +
-  "Bốn chỉ số Centrality  |  Phát hiện cộng đồng  |  Dự đoán liên kết",
-  { placeholder: "subContent" }
-);
+addSectionText(slide21Section, "title", "6.1.2. KHAI PHÁ DỮ LIỆU ĐỒ THỊ VÀ MẠNG");
+addSectionText(slide21Section, "content", "Giải quyết Nguồn 2 của tình huống mở đầu: mạng sở hữu chéo các công ty niêm yết");
+addSectionText(slide21Section, "subContent", "\"Trong dữ liệu mạng, giá trị không nằm trong từng đối tượng — mà nằm ở QUAN HỆ giữa các đối tượng.\"\n\n" +
+  "Bốn chỉ số Centrality  |  Phát hiện cộng đồng  |  Dự đoán liên kết");
 
 // ----------------------------------------------------
 // Slide 22: CONTENT (ĐỒ THỊ VÀ MẠNG: KHÁI NIỆM CƠ BẢN)
@@ -27,7 +24,7 @@ slide22Content.addText("ĐỒ THỊ VÀ MẠNG: KHÁI NIỆM CƠ BẢN", { place
 addText(
   slide22Content,
   [
-    { text: "🕸️ Khái niệm & Biến thể Đồ thị G = (V, E):\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🕸️ Khái niệm & Biến thể Đồ thị G = (V, E):\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Đỉnh V (Node) & Cạnh E (Edge):\n", options: { bold: true } },
     { text: "  V là tập đối tượng, E là tập quan hệ giữa hai đối tượng.\n\n" },
     { text: "• Các biến thể quan trọng:\n", options: { bold: true } },
@@ -37,9 +34,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -52,7 +49,7 @@ addText(
 addText(
   slide22Content,
   [
-    { text: "💼 Ví dụ Kinh tế tiêu biểu:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "💼 Ví dụ Kinh tế tiêu biểu:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Mạng sở hữu chéo: ", options: { bold: true } },
     { text: "Công ty A nắm giữ cổ phần công ty B (có hướng, trọng số).\n\n" },
     { text: "• Mạng giao dịch liên ngân hàng: ", options: { bold: true } },
@@ -64,9 +61,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.orange, width: 1 },
@@ -82,16 +79,16 @@ addText(
   "💡 Bản chất dữ liệu mạng: Mô hình hóa các đối tượng (đỉnh) và mối liên kết thực tế giữa chúng (cạnh).",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -111,7 +108,7 @@ slide23Content.addText("VÌ SAO CẦN KHAI PHÁ MẠNG KINH TẾ?", { placeholde
 addText(
   slide23Content,
   [
-    { text: "🌐 3 Hiện tượng Kinh tế bản chất Mạng:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🌐 3 Hiện tượng Kinh tế bản chất Mạng:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Rủi ro hệ thống: ", options: { bold: true } },
     { text: "Khủng hoảng 2008 lan truyền qua mạng tài sản chéo — 1 ngân hàng đổ kéo theo chuỗi.\n\n" },
     { text: "• Hiệu ứng lan tỏa Marketing: ", options: { bold: true } },
@@ -123,9 +120,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -138,7 +135,7 @@ addText(
 addText(
   slide23Content,
   [
-    { text: "🎯 So sánh Dữ liệu Bảng vs Mạng & 4 Bài toán:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🎯 So sánh Dữ liệu Bảng vs Mạng & 4 Bài toán:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Dữ liệu bảng: ", options: { bold: true } },
     { text: "Trả lời 'khách hàng này THẾ NÀO?' (nhân khẩu học, thu nhập).\n\n" },
     { text: "• Dữ liệu mạng: ", options: { bold: true } },
@@ -150,9 +147,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -168,16 +165,16 @@ addText(
   "💡 Phân biệt cốt lõi: Dữ liệu bảng trả lời 'khách hàng THẾ NÀO?'; dữ liệu mạng trả lời 'khách hàng QUEN AI, ẢNH HƯỞNG AI?'.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -194,7 +191,7 @@ const slide24Content = pptx.addSlide({ masterName: "CONTENT" });
 slide24Content.addText("CHƯƠNG 6 – CÁC HƯỚNG NGHIÊN CỨU TRONG KPDL", { placeholder: "footer" });
 slide24Content.addText("BÀI TOÁN 1: BỐN CHỈ SỐ CENTRALITY", { placeholder: "title" });
 
-slide24Content.addTable(
+addTable(slide24Content, 
   [
     [
       { text: "Chỉ số Centrality", options: { bold: true, fill: { color: DUE_COLORS.blue }, color: DUE_COLORS.white } },
@@ -226,8 +223,8 @@ slide24Content.addTable(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(23.8),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     border: { pt: 1, color: "CCCCCC" },
   }
 );
@@ -237,16 +234,16 @@ addText(
   "💡 Nguyên tắc lựa chọn: Mỗi chỉ số centrality trả lời một câu hỏi kinh doanh riêng biệt, không có chỉ số 'tốt nhất' tuyệt đối.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -266,7 +263,7 @@ slide25Content.addText("BÀI TOÁN 2: PHÁT HIỆN CỘNG ĐỒNG", { placeholde
 addText(
   slide25Content,
   [
-    { text: "🧩 Cộng đồng & Thuật toán Louvain:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🧩 Cộng đồng & Thuật toán Louvain:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Định nghĩa Cộng đồng: ", options: { bold: true } },
     { text: "Nhóm đỉnh kết nối DÀY ĐẶC bên trong, THƯA THỚT với bên ngoài ('phân cụm trên mạng').\n\n" },
     { text: "• Độ đo Modularity: ", options: { bold: true } },
@@ -278,9 +275,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -293,19 +290,19 @@ addText(
 addText(
   slide25Content,
   [
-    { text: "💡 Ứng dụng & So sánh K-means vs Louvain:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "💡 Ứng dụng & So sánh K-means vs Louvain:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Ứng dụng thực tế:\n", options: { bold: true } },
-    { text: "  - Phát hiện 'nhóm lợi ích' trong sở hữu chéo.\n  - Phân đoạn khách hàng theo quan hệ tương tác.\n  - Phát hiện đường dây gian lận giao dịch nội bộ.\n\n" },
+    { text: "  - Phát hiện 'nhóm lợi ích' trong sở hữu chéo.\n  - Phân đoạn khách hàng theo quan hệ tương tác.\n  - Phát hiện đường dây gian lận nội bộ.\n\n" },
     { text: "• So sánh nghiệp vụ:\n", options: { bold: true } },
-    { text: "  - K-means (Ch.4): Chia nhóm theo ĐỘ GIỐNG NHAU thuộc tính.\n  - Louvain (Ch.6): Chia nhóm theo QUAN HỆ tương tác thực tế." }
+    { text: "  - K-means: chia theo độ giống nhau thuộc tính.\n  - Louvain: chia theo quan hệ tương tác thực tế." }
   ],
   {
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.orange, width: 1 },
@@ -321,16 +318,16 @@ addText(
   "💡 So sánh nghiệp vụ: K-means (Ch.4) chia nhóm theo ĐỘ GIỐNG NHAU về thuộc tính; Louvain chia nhóm theo QUAN HỆ thực tế.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -350,7 +347,7 @@ slide26Content.addText("BÀI TOÁN 3: DỰ ĐOÁN LIÊN KẾT MẠNG", { placeho
 addText(
   slide26Content,
   [
-    { text: "🔗 Các Chỉ số Láng giềng Cơ bản:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🔗 Các Chỉ số Láng giềng Cơ bản:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Mục tiêu: ", options: { bold: true } },
     { text: "Dự đoán cặp đỉnh nào chưa có cạnh nhưng nhiều khả năng nối nhau trong tương lai.\n\n" },
     { text: "• Common neighbors: ", options: { bold: true } },
@@ -364,9 +361,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -379,7 +376,7 @@ addText(
 addText(
   slide26Content,
   [
-    { text: "🚀 Ứng dụng Kinh tế Thực tiễn:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🚀 Ứng dụng Kinh tế Thực tiễn:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• 'People you may know': ", options: { bold: true } },
     { text: "Gợi ý kết bạn trên LinkedIn, Facebook tăng độ tương tác.\n\n" },
     { text: "• Nền tảng Hệ gợi ý (Recommender Systems):\n", options: { bold: true } },
@@ -390,9 +387,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -408,16 +405,16 @@ addText(
   "💡 Trực giác Adamic-Adar: Bạn chung 'ít quen biết' mang sức chỉ báo kết nối cao hơn nhiều so với bạn chung 'quen cả thế giới'.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -437,7 +434,7 @@ slide27Content.addText("BÀI TOÁN 4: ĐỒ THỊ CON & GNN", { placeholder: "ti
 addText(
   slide27Content,
   [
-    { text: "🔍 Frequent Subgraph Mining:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🔍 Frequent Subgraph Mining:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Ý tưởng: ", options: { bold: true } },
     { text: "Tìm cấu trúc con lặp lại nhiều lần trong tập đồ thị — đóng vai trò 'Apriori trên đồ thị' (đối chiếu Ch.5).\n\n" },
     { text: "• Ứng dụng thực tế:\n", options: { bold: true } },
@@ -447,9 +444,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -462,7 +459,7 @@ addText(
 addText(
   slide27Content,
   [
-    { text: "🤖 Hướng Hiện đại (GNN & Embedding):\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🤖 Hướng Hiện đại (GNN & Embedding):\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Graph Embedding (node2vec):\n", options: { bold: true } },
     { text: "  Biến mỗi đỉnh thành 1 vector số ➔ Tái sử dụng mọi kỹ thuật Ch.3–5 (Đúng nguyên tắc vàng!).\n\n" },
     { text: "• Graph Neural Networks (GNN):\n", options: { bold: true } },
@@ -472,9 +469,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.orange, width: 1 },
@@ -490,16 +487,16 @@ addText(
   "💡 Tiến hóa kỹ thuật: Chuỗi phát triển từ 'chỉ số thủ công ➔ node2vec ➔ GNN', nhưng 4 chỉ số centrality vẫn dễ diễn giải nhất.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -519,7 +516,7 @@ slide28Content.addText("DEMO 2: MẠNG SỞ HỮU CHÉO (NETWORKX)", { placehold
 addText(
   slide28Content,
   [
-    { text: "💻 Quy trình Thực hành Python:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "💻 Quy trình Thực hành Python:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Bước 1: ", options: { bold: true } },
     { text: "Dựng đồ thị có hướng 15 công ty niêm yết; vẽ đồ thị bằng `networkx` + `matplotlib`.\n\n" },
     { text: "• Bước 2: ", options: { bold: true } },
@@ -533,9 +530,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -548,7 +545,7 @@ addText(
 addText(
   slide28Content,
   [
-    { text: "❓ Thảo luận Giám sát Thị trường:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "❓ Thảo luận Giám sát Thị trường:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "“Nếu là cán bộ giám sát của UBCK, anh/chị sẽ theo dõi chặt nhất công ty đứng đầu theo chỉ số nào? Vì sao?”\n\n", options: { bold: true, color: DUE_COLORS.orange } },
     { text: "• Gợi ý trả lời:\n", options: { bold: true } },
     { text: "  - Nên chọn Betweenness (điểm nghẽn lan truyền rủi ro) hoặc Eigenvector (ảnh hưởng thực chất).\n  - KHÔNG chọn Degree — nhiều kết nối chưa chắc nguy hiểm nhất." }
@@ -557,9 +554,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -575,16 +572,16 @@ addText(
   "💡 Bài học quản trị: Công ty có nhiều quan hệ (Degree) chưa chắc là mắt xích nguy hiểm nhất bằng công ty đóng vai trò cầu nối (Betweenness).",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -612,8 +609,8 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
@@ -629,14 +626,14 @@ addText(
   slide29Content,
   [
     { text: "📣 Influencer Marketing:\n", options: { bold: true, color: DUE_COLORS.orange } },
-    { text: "YouNet Media chọn KOL/KOC theo mức lan tỏa thực tế (reach/closeness) thay vì chỉ đếm follower (degree)." }
+    { text: "Nhãn hàng chọn KOL/KOC theo mức lan tỏa thực tế (reach/closeness) thay vì chỉ đếm follower (degree)." }
   ],
   {
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
@@ -657,10 +654,10 @@ addText(
   ],
   {
     x: cmToInch(0.8),
-    y: cmToInch(5.8),
+    y: 0, // trôi dưới thẻ cùng cột
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
@@ -681,10 +678,10 @@ addText(
   ],
   {
     x: cmToInch(13.1),
-    y: cmToInch(5.8),
+    y: 0, // trôi dưới thẻ cùng cột
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
@@ -701,16 +698,16 @@ addText(
   "💡 Thực tiễn Việt Nam: Phân tích mạng giúp nhận diện rủi ro hệ thống và gian lận có tổ chức mà dữ liệu bảng bỏ sót.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -730,23 +727,25 @@ slide30Content.addText("BÀI TẬP 6.1.2: MẠNG CHỦ THẺ — CỬA HÀNG", {
 addText(
   slide30Content,
   [
-    { text: "📝 Đề bài Thực hành Python (Credit Card Dataset):\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "📝 Đề bài thực hành Python:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Câu 1: ", options: { bold: true } },
-    { text: "Dựng đồ thị hai phía (Bipartite): Đỉnh = Chủ thẻ & Cửa hàng, Cạnh = Giao dịch.\n\n" },
+    { text: "Đồ thị hai phía chủ thẻ ↔ cửa hàng, cạnh = giao dịch.\n\n" },
     { text: "• Câu 2: ", options: { bold: true } },
-    { text: "Chiếu về mạng Cửa hàng (nối nếu chung khách). Tính Degree & Betweenness.\n\n" },
+    { text: "Chiếu về mạng cửa hàng, tính Degree & Betweenness.\n\n" },
     { text: "• Câu 3: ", options: { bold: true } },
-    { text: "Chạy Louvain phân cụm cửa hàng ➔ So sánh cộng đồng với cột `category`.\n\n" },
+    { text: "Louvain, so với `category`.\n\n" },
     { text: "• Câu 4: ", options: { bold: true } },
-    { text: "Gian lận (`is_fraud = 1`) có tập trung ở cộng đồng cửa hàng nào không?" }
+    { text: "Xuất `merchant_degree`, `merchant_fraud_rate` ➔ `features_merchant.csv`.\n\n" },
+    { text: "• Câu 5: ", options: { bold: true } },
+    { text: "Gian lận dồn ở vài cửa hàng — rủi ro thật hay quá ít giao dịch?" }
   ],
   {
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -759,19 +758,19 @@ addText(
 addText(
   slide30Content,
   [
-    { text: "🎯 Gợi ý Giảng viên & Định hướng:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🎯 Gợi ý Giảng viên & Định hướng:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Bài học từ Câu 3:\n", options: { bold: true } },
-    { text: "  Cộng đồng Louvain trùng 1 phần ngành hàng nhưng cắt ngang (khách đi chợ + xăng + ăn uống cùng khu vực).\n\n" },
-    { text: "• Bài học từ Câu 4:\n", options: { bold: true } },
-    { text: "  Degree của cửa hàng và tỷ lệ fraud lịch sử của cộng đồng là đặc trưng mạnh cho bài tập Fraud ở 6.4.3." }
+    { text: "  Cộng đồng Louvain trùng một phần ngành hàng nhưng cắt ngang nó.\n\n" },
+    { text: "• Bài học từ Câu 4–5:\n", options: { bold: true } },
+    { text: "  Bẫy rò rỉ nhãn: tính tỷ lệ gian lận trên toàn bộ dữ liệu sẽ cho mô hình ở 6.4.3 đẹp giả tạo." }
   ],
   {
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.orange, width: 1 },
@@ -784,19 +783,19 @@ addText(
 
 addText(
   slide30Content,
-  "💡 Luyện tập: Dựng mạng đồ thị hai phía (Bipartite Graph) để trích xuất đặc trưng mạng lưới cho mô hình phát hiện gian lận.",
+  "💡 Luyện tập: Dựng đồ thị hai phía, trích đặc trưng mạng cho mô hình gian lận.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -816,7 +815,7 @@ slide31Content.addText("TÓM TẮT 6.1.2 — ĐỒ THỊ & MẠNG", { placeholde
 addText(
   slide31Content,
   [
-    { text: "📌 Tổng kết Nội dung Mục 6.1.2:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "📌 Tổng kết Nội dung Mục 6.1.2:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Khái niệm: ", options: { bold: true } },
     { text: "Đồ thị = Đỉnh + Cạnh (Có hướng, trọng số, Bipartite).\n\n" },
     { text: "• 4 Bài toán chính:\n", options: { bold: true } },
@@ -828,9 +827,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -843,7 +842,7 @@ addText(
 addText(
   slide31Content,
   [
-    { text: "🚀 Chuyển giao tiếp theo — Mục 6.1.3:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🚀 Chuyển giao tiếp theo — Mục 6.1.3:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Nguyên tắc vàng lặp lại: ", options: { bold: true } },
     { text: "Mạng ➔ Chỉ số / Vector đặc trưng ➔ Tái dùng Ch.3–5.\n\n" },
     { text: "• Bài học tiếp theo (6.1.3):\n", options: { bold: true } },
@@ -853,9 +852,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -868,19 +867,19 @@ addText(
 
 addText(
   slide31Content,
-  "💡 Bước tiếp theo: Chuyển sang 6.1.3 — Khai phá dữ liệu văn bản phi cấu trúc chiếm ~80% dữ liệu doanh nghiệp.",
+  "💡 Tiếp theo — 6.1.3: văn bản phi cấu trúc, ~80% dữ liệu doanh nghiệp.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }

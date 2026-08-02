@@ -1,5 +1,5 @@
 import { SlideGenerator } from "../../../slide-generator.ts";
-import { addText, DUE_COLORS } from "../../../template/due-template.ts";
+import { addSectionText, addTable, addText, DUE_COLORS } from "../../../template/due-template.ts";
 import { cmToInch } from "../../../utils.ts";
 
 const pptx = SlideGenerator.pptx;
@@ -9,13 +9,10 @@ const pptx = SlideGenerator.pptx;
 // ----------------------------------------------------
 const slide61Section = pptx.addSlide({ masterName: "SECTION" });
 slide61Section.addText("CHƯƠNG 6 – CÁC HƯỚNG NGHIÊN CỨU TRONG KPDL", { placeholder: "footer" });
-slide61Section.addText("6.2.3. KHAI PHÁ DỮ LIỆU TRỰC QUAN VÀ ÂM THANH", { placeholder: "title" });
-slide61Section.addText("Visual & Audio Data Mining — Tận dụng sức mạnh thị giác & thính giác con người", { placeholder: "content" });
-slide61Section.addText(
-  "\"'Thuật toán' song song mạnh nhất mà mọi doanh nghiệp đều sở hữu miễn phí: đôi mắt và bộ não con người.\"\n\n" +
-  "Khai phá Trực quan  |  Bộ tứ Anscombe  |  4 Mức tích hợp  |  Khai phá Âm thanh",
-  { placeholder: "subContent" }
-);
+addSectionText(slide61Section, "title", "6.2.3. KHAI PHÁ DỮ LIỆU TRỰC QUAN VÀ ÂM THANH");
+addSectionText(slide61Section, "content", "Visual & Audio Data Mining — Tận dụng sức mạnh thị giác & thính giác con người");
+addSectionText(slide61Section, "subContent", "\"'Thuật toán' song song mạnh nhất mà mọi doanh nghiệp đều sở hữu miễn phí: đôi mắt và bộ não con người.\"\n\n" +
+  "Khai phá Trực quan  |  Bộ tứ Anscombe  |  4 Mức tích hợp  |  Khai phá Âm thanh");
 
 // ----------------------------------------------------
 // Slide 62: CONTENT (KHAI PHÁ DỮ LIỆU TRỰC QUAN LÀ GÌ?)
@@ -27,7 +24,7 @@ slide62Content.addText("KHAI PHÁ DỮ LIỆU TRỰC QUAN LÀ GÌ?", { placehold
 addText(
   slide62Content,
   [
-    { text: "👁️ Bản chất Khai phá Trực quan (Visual Mining):\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "👁️ Bản chất Khai phá Trực quan (Visual Mining):\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Định nghĩa (Han & Kamber): ", options: { bold: true } },
     { text: "Khám phá tri thức tiềm ẩn từ tập dữ liệu lớn bằng kỹ thuật trực quan hóa dữ liệu và/hoặc tri thức.\n\n" },
     { text: "• Sức mạnh Hệ thị giác con người:\n", options: { bold: true } },
@@ -37,9 +34,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -52,7 +49,7 @@ addText(
 addText(
   slide62Content,
   [
-    { text: "📊 Bài học từ Bộ tứ Anscombe (Anscombe's Quartet):\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "📊 Bài học từ Bộ tứ Anscombe (Anscombe's Quartet):\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Khái niệm Anscombe:\n", options: { bold: true } },
     { text: "  4 tập dữ liệu có cùng trung bình, phương sai, tương quan, đường hồi quy ➔ nhưng vẽ lên hoàn toàn khác nhau!\n\n" },
     { text: "• Bài học lớn: ", options: { bold: true, color: DUE_COLORS.orange } },
@@ -62,9 +59,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.orange, width: 1 },
@@ -80,16 +77,16 @@ addText(
   "💡 Nguyên tắc bất hủ: Luôn luôn VẼ TRỰC QUAN HOÁ dữ liệu trước khi chạy bất kỳ mô hình phức tạp nào!",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -106,7 +103,7 @@ const slide63Content = pptx.addSlide({ masterName: "CONTENT" });
 slide63Content.addText("CHƯƠNG 6 – CÁC HƯỚNG NGHIÊN CỨU TRONG KPDL", { placeholder: "footer" });
 slide63Content.addText("BỐN MỨC TÍCH HỢP TRỰC QUAN HOÁ", { placeholder: "title" });
 
-slide63Content.addTable(
+addTable(slide63Content, 
   [
     [
       { text: "Cách tích hợp", options: { bold: true, fill: { color: DUE_COLORS.blue }, color: DUE_COLORS.white } },
@@ -138,27 +135,27 @@ slide63Content.addTable(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(23.8),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     border: { pt: 1, color: "CCCCCC" },
   }
 );
 
 addText(
   slide63Content,
-  "💡 Tiến trình tích hợp: Tăng dần mức độ 'Human-in-the-loop': Xem dữ liệu ➔ Xem kết quả ➔ Xem quá trình ➔ Tương tác trực tiếp.",
+  "💡 Human-in-the-loop tăng dần: xem dữ liệu ➔ kết quả ➔ quá trình ➔ tương tác.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -178,7 +175,7 @@ slide64Content.addText("KHAI PHÁ DỮ LIỆU ÂM THANH", { placeholder: "title"
 addText(
   slide64Content,
   [
-    { text: "🔊 Khái niệm & Động lực (Audio Mining):\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🔊 Khái niệm & Động lực (Audio Mining):\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Khái niệm: ", options: { bold: true } },
     { text: "Dùng tín hiệu âm thanh để biểu thị mẫu dữ liệu — 'nghe' dữ liệu thay vì 'nhìn'.\n\n" },
     { text: "• Lý do tồn tại: ", options: { bold: true } },
@@ -188,9 +185,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -203,7 +200,7 @@ addText(
 addText(
   slide64Content,
   [
-    { text: "🎧 Ứng dụng & Thảo luận khi nào nên dùng:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🎧 Ứng dụng & Thảo luận khi nào nên dùng:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Ứng dụng thực tế:\n", options: { bold: true } },
     { text: "  - Cảnh báo âm thanh nền (Sonification) trong phòng giám sát giao dịch.\n  - Cảnh báo bất thường thiết bị IoT / Y tế.\n\n" },
     { text: "❓ Câu hỏi thảo luận:\n", options: { bold: true, color: DUE_COLORS.orange } },
@@ -213,9 +210,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -231,16 +228,16 @@ addText(
   "💡 Gợi ý trả lời: Dùng âm thanh khi cần GIÁM SÁT LIÊN TỤC lúc mắt đang bận việc khác; còn phân tích so sánh đa chiều thì thị giác vượt trội.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -260,7 +257,7 @@ slide65Content.addText("DEMO 4: TRỰC QUAN HOÁ VỚI PYTHON", { placeholder: "
 addText(
   slide65Content,
   [
-    { text: "💻 Các bước Thực hành Python:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "💻 Các bước Thực hành Python:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Bước 1: ", options: { bold: true } },
     { text: "Vẽ Bộ tứ Anscombe (`seaborn`) ➔ Kiểm chứng 'cùng thống kê, khác bản chất'.\n\n" },
     { text: "• Bước 2: ", options: { bold: true } },
@@ -274,9 +271,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -289,7 +286,7 @@ addText(
 addText(
   slide65Content,
   [
-    { text: "❓ Thảo luận Phát hiện Nghiệp vụ:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "❓ Thảo luận Phát hiện Nghiệp vụ:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "“Bản đồ nhiệt Giờ × Ngày cho thấy giao dịch gian lận dồn vào khung giờ nào? Phát hiện này hành động được (Actionable) ra sao?”\n\n", options: { bold: true, color: DUE_COLORS.orange } },
     { text: "• Phát hiện: ", options: { bold: true } },
     { text: "Fraud dồn về 0h - 4h sáng.\n\n" },
@@ -300,9 +297,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.orange, width: 1 },
@@ -315,19 +312,19 @@ addText(
 
 addText(
   slide65Content,
-  "💡 Ví dụ hành động được: Một hình vẽ Heatmap đêm khuya ➔ Một quy tắc nghiệp vụ bảo vệ dòng vốn cho ngân hàng.",
+  "💡 Một heatmap đêm khuya ➔ một quy tắc nghiệp vụ đo được chi phí — lợi ích.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -355,8 +352,8 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
@@ -378,8 +375,8 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
@@ -400,10 +397,10 @@ addText(
   ],
   {
     x: cmToInch(0.8),
-    y: cmToInch(5.8),
+    y: 0, // trôi dưới thẻ cùng cột
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
@@ -424,10 +421,10 @@ addText(
   ],
   {
     x: cmToInch(13.1),
-    y: cmToInch(5.8),
+    y: 0, // trôi dưới thẻ cùng cột
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
@@ -444,16 +441,16 @@ addText(
   "💡 Thông điệp: Trực quan hóa dữ liệu là khoản đầu tư công nghệ rẻ nhất nhưng mang lại hiệu quả hoàn vốn nhanh nhất.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -473,7 +470,7 @@ slide67Content.addText("TÓM TẮT 6.2.3: TRỰC QUAN & ÂM THANH", { placeholde
 addText(
   slide67Content,
   [
-    { text: "📌 Tổng kết Nội dung Mục 6.2.3:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "📌 Tổng kết Nội dung Mục 6.2.3:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Visual Data Mining: ", options: { bold: true } },
     { text: "Trực quan hóa + Khai phá dữ liệu, tận dụng mắt & não con người.\n\n" },
     { text: "• 4 Mức tích hợp:\n", options: { bold: true } },
@@ -487,9 +484,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -502,7 +499,7 @@ addText(
 addText(
   slide67Content,
   [
-    { text: "🚀 Chuyển giao tiếp theo — Mục 6.2.4:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🚀 Chuyển giao tiếp theo — Mục 6.2.4:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Công cụ thực hành: ", options: { bold: true } },
     { text: "`matplotlib`, `seaborn`, `plotly`, Power BI, KNIME.\n\n" },
     { text: "• Tiếp theo (Mục 6.2.4):\n", options: { bold: true, color: DUE_COLORS.orange } },
@@ -512,9 +509,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -530,16 +527,16 @@ addText(
   "💡 Bước tiếp theo: Chuyển sang 6.2.4 — Khám phá bức tranh Học máy & Học sâu hiện đại mở rộng ngoài giáo trình.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }

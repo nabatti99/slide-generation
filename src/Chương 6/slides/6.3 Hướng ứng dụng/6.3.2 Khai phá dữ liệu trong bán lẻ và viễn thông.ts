@@ -1,5 +1,5 @@
 import { SlideGenerator } from "../../../slide-generator.ts";
-import { addText, DUE_COLORS } from "../../../template/due-template.ts";
+import { addSectionText, addTable, addText, DUE_COLORS } from "../../../template/due-template.ts";
 import { cmToInch } from "../../../utils.ts";
 
 const pptx = SlideGenerator.pptx;
@@ -9,13 +9,10 @@ const pptx = SlideGenerator.pptx;
 // ----------------------------------------------------
 const slide89Section = pptx.addSlide({ masterName: "SECTION" });
 slide89Section.addText("CHƯƠNG 6 – CÁC HƯỚNG NGHIÊN CỨU TRONG KPDL", { placeholder: "footer" });
-slide89Section.addText("6.3.2. KHAI PHÁ DỮ LIỆU TRONG BÁN LẺ VÀ VIỄN THÔNG", { placeholder: "title" });
-slide89Section.addText("Retail & Telecommunication Data Mining — Cái nôi khai sinh và nơi bùng nổ của Data Mining", { placeholder: "content" });
-slide89Section.addText(
-  "\"Khai phá dữ liệu lớn lên từ những giỏ hàng siêu thị — và trưởng thành trong cuộc chiến giữ chân thuê bao di động.\"\n\n" +
-  "Phân tích Giỏ hàng  |  Đo hiệu quả Khuyến mãi (A/B testing)  |  Dự đoán Churn  |  Uplift Modeling",
-  { placeholder: "subContent" }
-);
+addSectionText(slide89Section, "title", "6.3.2. KHAI PHÁ DỮ LIỆU TRONG BÁN LẺ VÀ VIỄN THÔNG");
+addSectionText(slide89Section, "content", "Retail & Telecommunication Data Mining — Cái nôi khai sinh và nơi bùng nổ của Data Mining");
+addSectionText(slide89Section, "subContent", "\"Khai phá dữ liệu lớn lên từ những giỏ hàng siêu thị — và trưởng thành trong cuộc chiến giữ chân thuê bao di động.\"\n\n" +
+  "Phân tích Giỏ hàng  |  Đo hiệu quả Khuyến mãi (A/B testing)  |  Dự đoán Churn  |  Uplift Modeling");
 
 // ----------------------------------------------------
 // Slide 90: CONTENT (NGÀNH BÁN LẺ — MỎ DỮ LIỆU KHỔNG LỒ VÀ NĂM NHÓM ỨNG DỤNG)
@@ -27,7 +24,7 @@ slide90Content.addText("NGÀNH BÁN LẺ & 5 NHÓM ỨNG DỤNG", { placeholder:
 addText(
   slide90Content,
   [
-    { text: "🛒 Vì sao Bán lẻ là 'Cái nôi' của KPDL?:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🛒 Vì sao Bán lẻ là 'Cái nôi' của KPDL?:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Khối lượng khổng lồ: ", options: { bold: true } },
     { text: "Dữ liệu POS, giao dịch mua sắm, tồn kho, vận chuyển, dịch vụ.\n\n" },
     { text: "• Bùng nổ Thương mại Điện tử: ", options: { bold: true } },
@@ -37,9 +34,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -52,7 +49,7 @@ addText(
 addText(
   slide90Content,
   [
-    { text: "📋 5 Nhóm Ứng dụng Bán lẻ (Han & Kamber):\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "📋 5 Nhóm Ứng dụng Bán lẻ (Han & Kamber):\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "1. Kho dữ liệu bán lẻ: Tích hợp POS, tồn kho, thẻ thành viên.\n" },
     { text: "2. Phân tích đa chiều: Doanh số (Sản phẩm × Giờ × Vùng × Khách).\n" },
     { text: "3. Phân tích hiệu quả chiến dịch bán hàng & Khuyến mãi.\n" },
@@ -63,9 +60,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.orange, width: 1 },
@@ -81,16 +78,16 @@ addText(
   "💡 Trao đổi bản chất: Thẻ thành viên siêu thị cho khách hàng giảm giá nhỏ để đổi lấy dữ liệu hành vi định danh giá trị.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -110,7 +107,7 @@ slide91Content.addText("PHÂN TÍCH GIỎ HÀNG & KHUYẾN MÃI", { placeholder:
 addText(
   slide91Content,
   [
-    { text: "🛍️ Phân tích Giỏ hàng & Khuyến mãi:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🛍️ Phân tích Giỏ hàng & Khuyến mãi:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Phân tích Giỏ hàng (Market Basket): ", options: { bold: true } },
     { text: "Luật kết hợp Ch.5 tìm các sản phẩm đồng xuất hiện ➔ Xếp kệ, bán combo, khuyến mãi chéo.\n\n" },
     { text: "• Đo hiệu quả Khuyến mãi:\n", options: { bold: true } },
@@ -120,9 +117,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -135,7 +132,7 @@ addText(
 addText(
   slide91Content,
   [
-    { text: "🎯 Thí nghiệm Đối chứng & Thảo luận:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🎯 Thí nghiệm Đối chứng & Thảo luận:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Thiết kế A/B Testing: ", options: { bold: true } },
     { text: "Nhóm thử nghiệm (xem KM) vs Nhóm đối chứng (không xem) ➔ Thống kê 6.2.1.\n\n" },
     { text: "❓ Thảo luận: 'Giảm 30% sữa' làm doanh số sữa tăng 80% trong tuần KM ➔ Nhà quản lý có nên vui mừng ngay? Cần kiểm tra thêm những số nào?" }
@@ -144,9 +141,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -162,16 +159,16 @@ addText(
   "💡 Bài học quản trị: Khai phá dữ liệu khuyến mãi = Đo GIÁ TRỊ TĂNG THÊM (Incremental Value), không đo doanh số thô!",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -191,7 +188,7 @@ slide92Content.addText("GIỮ CHÂN KHÁCH HÀNG & GIÁ TRỊ CLV", { placeholde
 addText(
   slide92Content,
   [
-    { text: "🤝 Nguyên lý Giữ chân Khách hàng:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🤝 Nguyên lý Giữ chân Khách hàng:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Tối ưu chi phí: ", options: { bold: true } },
     { text: "Giữ 1 khách hàng cũ RẺ HƠN NHIỀU LẦN chi phí kiếm 1 khách hàng mới.\n\n" },
     { text: "• Mục tiêu: ", options: { bold: true } },
@@ -201,9 +198,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -216,7 +213,7 @@ addText(
 addText(
   slide92Content,
   [
-    { text: "🛠️ Chuỗi Kỹ thuật Tích hợp (RFM + CLV):\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🛠️ Chuỗi Kỹ thuật Tích hợp (RFM + CLV):\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• RFM + K-means (Ch.4): ", options: { bold: true } },
     { text: "Khoanh nhóm khách giá trị cao đang suy giảm tần suất.\n\n" },
     { text: "• Survival Analysis (6.2.1): ", options: { bold: true } },
@@ -228,9 +225,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -246,16 +243,16 @@ addText(
   "💡 Tinh thần Kinh tế vi mô (6.2.2): Không giữ chân khách bằng mọi giá — chỉ chi ngân sách khi ROI kỳ vọng dương!",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -275,7 +272,7 @@ slide93Content.addText("VIỄN THÔNG & BÀI TOÁN CHURN", { placeholder: "title
 addText(
   slide93Content,
   [
-    { text: "📞 Đặc thù Viễn thông & Quy trình Churn:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "📞 Đặc thù Viễn thông & Quy trình Churn:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Bối cảnh: ", options: { bold: true } },
     { text: "Thị trường bão hòa ➔ Cạnh tranh giữ thuê bao. Dữ liệu CDR, cước, nạp tiền cực giàu.\n\n" },
     { text: "• 4 Bước quy trình Churn:\n", options: { bold: true } },
@@ -285,9 +282,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -300,7 +297,7 @@ addText(
 addText(
   slide93Content,
   [
-    { text: "🎯 Uplift Modeling & Thảo luận:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🎯 Uplift Modeling & Thảo luận:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Thước đo Uplift: ", options: { bold: true } },
     { text: "Đo chênh lệch tỷ lệ ở lại giữa nhóm được ưu đãi vs nhóm đối chứng ➔ Quy ra tiền.\n\n" },
     { text: "• Uplift Modeling: ", options: { bold: true, color: DUE_COLORS.orange } },
@@ -310,9 +307,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -328,16 +325,16 @@ addText(
   "💡 Điểm chạm hiện đại: Uplift Modeling chính là giao điểm giữa Khai phá dữ liệu và Kinh tế học nhân quả.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -357,7 +354,7 @@ slide94Content.addText("PHÁT HIỆN GIAN LẬN VIỄN THÔNG", { placeholder: "
 addText(
   slide94Content,
   [
-    { text: "🚨 Phát hiện Gian lận Viễn thông:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🚨 Phát hiện Gian lận Viễn thông:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Các dạng gian lận: ", options: { bold: true } },
     { text: "Gian lận cước quốc tế, SIM rác, cuộc gọi lừa đảo, trạm BTS giả.\n\n" },
     { text: "• Kỹ thuật kết hợp: ", options: { bold: true } },
@@ -367,9 +364,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -382,7 +379,7 @@ addText(
 addText(
   slide94Content,
   [
-    { text: "📊 Phân tích Đa chiều & Thực tiễn VN:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "📊 Phân tích Đa chiều & Thực tiễn VN:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Khối dữ liệu Data Cube: ", options: { bold: true } },
     { text: "Phân tích theo (Loại cuộc gọi × Giờ × Vùng × Gói cước) để quy hoạch hạ tầng.\n\n" },
     { text: "• Thực tiễn Việt Nam: ", options: { bold: true, color: DUE_COLORS.orange } },
@@ -392,9 +389,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -410,16 +407,16 @@ addText(
   "💡 Thống nhất khung kiến trúc: Chống gian lận Viễn thông và Ngân hàng dùng chung khung 'Hồ sơ nền + Ngoại lai + Mạng'.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -439,7 +436,7 @@ slide95Content.addText("DEMO 6: DỰ ĐOÁN TELCO CHURN", { placeholder: "title"
 addText(
   slide95Content,
   [
-    { text: "💻 Quy trình Thực hành Python:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "💻 Quy trình Thực hành Python:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Bước 1: ", options: { bold: true } },
     { text: "Nạp bộ Telco Customer Churn (~7.000 dòng Kaggle).\n\n" },
     { text: "• Bước 2: ", options: { bold: true } },
@@ -453,9 +450,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -468,7 +465,7 @@ addText(
 addText(
   slide95Content,
   [
-    { text: "❓ Thảo luận Tương quan vs Nhân quả:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "❓ Thảo luận Tương quan vs Nhân quả:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "“Biến 'Loại hợp đồng' quan trọng nhất ➔ Hành động là ép khách ký dài hạn hay tìm hiểu nguyên nhân?”\n\n", options: { bold: true, color: DUE_COLORS.orange } },
     { text: "• Bài học 6.2.1:\n", options: { bold: true } },
     { text: "  Hợp đồng từng tháng chỉ là DẤU HIỆU nhóm khách chưa cam kết, không phải NGUYÊN NHÂN churn ➔ Ép ký dài hạn gây phản tác dụng." }
@@ -477,9 +474,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -495,16 +492,16 @@ addText(
   "💡 Hành động đúng: Thí nghiệm A/B Testing ưu đãi chuyển đổi tự nguyện và đo lường tỷ lệ Uplift thực tế.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -532,8 +529,8 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
@@ -555,8 +552,8 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
@@ -577,10 +574,10 @@ addText(
   ],
   {
     x: cmToInch(0.8),
-    y: cmToInch(5.8),
+    y: 0, // trôi dưới thẻ cùng cột
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
@@ -601,10 +598,10 @@ addText(
   ],
   {
     x: cmToInch(13.1),
-    y: cmToInch(5.8),
+    y: 0, // trôi dưới thẻ cùng cột
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
@@ -621,16 +618,16 @@ addText(
   "💡 Thực tiễn Việt Nam: Thí nghiệm đối chứng (A/B testing) là thước đo cuối cùng đánh giá thành bại của mọi chiến dịch dữ liệu.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -650,7 +647,7 @@ slide97Content.addText("TÓM TẮT 6.3.2 — BÁN LẺ & VIỄN THÔNG", { place
 addText(
   slide97Content,
   [
-    { text: "📌 Tổng kết Nội dung Mục 6.3.2:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "📌 Tổng kết Nội dung Mục 6.3.2:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Ngành Bán lẻ: ", options: { bold: true } },
     { text: "Phân tích giỏ hàng · Đo hiệu quả khuyến mãi A/B testing · Giữ chân khách (RFM, CLV, Survival).\n\n" },
     { text: "• Ngành Viễn thông: ", options: { bold: true } },
@@ -660,9 +657,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -675,7 +672,7 @@ addText(
 addText(
   slide97Content,
   [
-    { text: "🚀 Chuyển giao tiếp theo — Mục 6.3.3:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🚀 Chuyển giao tiếp theo — Mục 6.3.3:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Thước đo cuối cùng: ", options: { bold: true } },
     { text: "Thí nghiệm đối chứng A/B Testing.\n\n" },
     { text: "• Tiếp theo (Mục 6.3.3 & 6.3.4):\n", options: { bold: true, color: DUE_COLORS.orange } },
@@ -685,9 +682,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -703,16 +700,16 @@ addText(
   "💡 Bước tiếp theo: Chuyển sang 6.3.3 và 6.3.4 — Mở rộng tầm nhìn sang Khoa học kỹ thuật và An ninh mạng.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }

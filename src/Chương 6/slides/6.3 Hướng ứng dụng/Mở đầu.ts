@@ -1,5 +1,5 @@
 import { SlideGenerator } from "../../../slide-generator.ts";
-import { addText, DUE_COLORS } from "../../../template/due-template.ts";
+import { addSectionText, addTable, addText, DUE_COLORS } from "../../../template/due-template.ts";
 import { cmToInch } from "../../../utils.ts";
 
 const pptx = SlideGenerator.pptx;
@@ -9,13 +9,10 @@ const pptx = SlideGenerator.pptx;
 // ----------------------------------------------------
 const slide76Section = pptx.addSlide({ masterName: "SECTION" });
 slide76Section.addText("CHƯƠNG 6 – CÁC HƯỚNG NGHIÊN CỨU TRONG KPDL", { placeholder: "footer" });
-slide76Section.addText("6.3. HƯỚNG ỨNG DỤNG", { placeholder: "title" });
-slide76Section.addText("Khai phá dữ liệu trong các lĩnh vực (Data Mining Applications)", { placeholder: "content" });
-slide76Section.addText(
-  "\"6.1 hỏi khai phá CÁI GÌ?, 6.2 hỏi khai phá BẰNG GÌ? — 6.3 trả lời câu hỏi cuối cùng: khai phá CHO AI?\"\n\n" +
-  "Tài chính Ngân hàng  |  Bán lẻ & Viễn thông  |  Hệ gợi ý  |  Xã hội & Đạo đức",
-  { placeholder: "subContent" }
-);
+addSectionText(slide76Section, "title", "6.3. HƯỚNG ỨNG DỤNG");
+addSectionText(slide76Section, "content", "Khai phá dữ liệu trong các lĩnh vực (Data Mining Applications)");
+addSectionText(slide76Section, "subContent", "\"6.1 hỏi khai phá CÁI GÌ?, 6.2 hỏi khai phá BẰNG GÌ? — 6.3 trả lời câu hỏi cuối cùng: khai phá CHO AI?\"\n\n" +
+  "Tài chính Ngân hàng  |  Bán lẻ & Viễn thông  |  Hệ gợi ý  |  Xã hội & Đạo đức");
 
 // ----------------------------------------------------
 // Slide 77: CONTENT (HƯỚNG ỨNG DỤNG LÀ GÌ? — KHOẢNG CÁCH TỪ NGUYÊN LÝ ĐẾN CÔNG CỤ NGÀNH)
@@ -27,7 +24,7 @@ slide77Content.addText("HƯỚNG ỨNG DỤNG VÀ THÁCH THỨC NGÀNH", { place
 addText(
   slide77Content,
   [
-    { text: "🏢 Khoảng cách từ Nguyên lý đến Công cụ Ngành:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🏢 Khoảng cách từ Nguyên lý đến Công cụ Ngành:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Nhận định (Han & Kamber): ", options: { bold: true } },
     { text: "Tồn tại khoảng cách lớn giữa nguyên lý tổng quát và công cụ khai phá hiệu quả cho từng ngành cụ thể.\n\n" },
     { text: "• Không có thuật toán vạn năng: ", options: { bold: true, color: DUE_COLORS.orange } },
@@ -37,9 +34,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -52,7 +49,7 @@ addText(
 addText(
   slide77Content,
   [
-    { text: "🎯 3 Đòi hỏi Đặc thù & Ý nghĩa Học tập:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🎯 3 Đòi hỏi Đặc thù & Ý nghĩa Học tập:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Dữ liệu đặc thù: ", options: { bold: true } },
     { text: "Giao dịch tài chính ≠ Log viễn thông ≠ Giỏ hàng siêu thị.\n\n" },
     { text: "• Ràng buộc đặc thù: ", options: { bold: true } },
@@ -64,9 +61,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.orange, width: 1 },
@@ -82,16 +79,16 @@ addText(
   "💡 Mục tiêu: Xem các kỹ thuật của 6.1 và 6.2 được lắp ráp thành giải pháp thực tế cho từng ngành kinh doanh.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -111,7 +108,7 @@ slide78Content.addText("LỘ TRÌNH MỤC 6.3 — SÁU TRẠM DỪNG", { placeho
 addText(
   slide78Content,
   [
-    { text: "📊 Trạm 6.3.1, 6.3.2 & 6.3.3:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "📊 Trạm 6.3.1, 6.3.2 & 6.3.3:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• 6.3.1 Phân tích Tài chính: ", options: { bold: true } },
     { text: "Chấm điểm tín dụng, chống rửa tiền, phân khúc ngân hàng (Trọng tâm).\n\n" },
     { text: "• 6.3.2 Bán lẻ & Viễn thông: ", options: { bold: true } },
@@ -123,9 +120,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -138,7 +135,7 @@ addText(
 addText(
   slide78Content,
   [
-    { text: "🛡️ Trạm 6.3.4, 6.3.5 & 6.3.6:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🛡️ Trạm 6.3.4, 6.3.5 & 6.3.6:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• 6.3.4 An ninh mạng: ", options: { bold: true } },
     { text: "Phát hiện & ngăn chặn xâm nhập bất thường.\n\n" },
     { text: "• 6.3.5 Hệ thống Gợi ý: ", options: { bold: true } },
@@ -150,9 +147,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -168,16 +165,16 @@ addText(
   "💡 Lộ trình: 6 trạm dừng bao phủ các ngành kinh tế trọng điểm và trách nhiệm đạo đức của nhà quản lý.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -197,7 +194,7 @@ slide79Content.addText("CÂU HỎI: MỖI NGÀNH MỘT CHI PHÍ GIÁ TRỊ", { p
 addText(
   slide79Content,
   [
-    { text: "🔍 So sánh Bài toán Phân lớp (Ch.4) ở 3 Ngành:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🔍 So sánh Bài toán Phân lớp (Ch.4) ở 3 Ngành:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Ngân hàng (Duyệt vay): ", options: { bold: true } },
     { text: "Sai là mất vốn thật ➔ Đòi giải trình minh bạch, ngưỡng chặn chặt chẽ.\n\n" },
     { text: "• TMĐT (Gợi ý sản phẩm): ", options: { bold: true } },
@@ -209,9 +206,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -224,7 +221,7 @@ addText(
 addText(
   slide79Content,
   [
-    { text: "⚖️ 3 Yếu tố Quyết định 'Số phận' Mô hình:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "⚖️ 3 Yếu tố Quyết định 'Số phận' Mô hình:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "1. Chi phí của sai lầm (Cost of Errors).\n" },
     { text: "2. Yêu cầu về khả năng giải trình (Explainability).\n" },
     { text: "3. Tốc độ thay đổi của môi trường dữ liệu.\n\n" },
@@ -234,9 +231,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.orange, width: 1 },
@@ -252,16 +249,16 @@ addText(
   "💡 Ma trận Chi phí (Cost Matrix): Ngành nào chi phí sai lầm bất đối xứng càng lớn thì càng phải tối ưu theo Chi phí kỳ vọng!",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }

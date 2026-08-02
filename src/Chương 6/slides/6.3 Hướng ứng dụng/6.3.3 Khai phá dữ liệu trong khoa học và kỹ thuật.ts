@@ -1,5 +1,5 @@
 import { SlideGenerator } from "../../../slide-generator.ts";
-import { addText, DUE_COLORS } from "../../../template/due-template.ts";
+import { addSectionText, addTable, addText, DUE_COLORS } from "../../../template/due-template.ts";
 import { cmToInch } from "../../../utils.ts";
 
 const pptx = SlideGenerator.pptx;
@@ -9,13 +9,10 @@ const pptx = SlideGenerator.pptx;
 // ----------------------------------------------------
 const slide98Section = pptx.addSlide({ masterName: "SECTION" });
 slide98Section.addText("CHƯƠNG 6 – CÁC HƯỚNG NGHIÊN CỨU TRONG KPDL", { placeholder: "footer" });
-slide98Section.addText("6.3.3. KHAI PHÁ DỮ LIỆU TRONG KHOA HỌC VÀ KỸ THUẬT", { placeholder: "title" });
-slide98Section.addText("Science & Engineering Data Mining — Mô thức thứ tư của nghiên cứu khoa học", { placeholder: "content" });
-slide98Section.addText(
-  "\"Khoa học hiện đại đã bước sang 'mô thức thứ tư': Sau thực nghiệm, lý thuyết và mô phỏng — giờ là KHÁM PHÁ TỪ DỮ LIỆU.\"\n\n" +
-  "Tin sinh học  |  Thiên văn & Khí hậu  |  Bảo trì Dự đoán (Predictive Maintenance)",
-  { placeholder: "subContent" }
-);
+addSectionText(slide98Section, "title", "6.3.3. KHAI PHÁ DỮ LIỆU TRONG KHOA HỌC VÀ KỸ THUẬT");
+addSectionText(slide98Section, "content", "Science & Engineering Data Mining — Mô thức thứ tư của nghiên cứu khoa học");
+addSectionText(slide98Section, "subContent", "\"Khoa học hiện đại đã bước sang 'mô thức thứ tư': Sau thực nghiệm, lý thuyết và mô phỏng — giờ là KHÁM PHÁ TỪ DỮ LIỆU.\"\n\n" +
+  "Tin sinh học  |  Thiên văn & Khí hậu  |  Bảo trì Dự đoán (Predictive Maintenance)");
 
 // ----------------------------------------------------
 // Slide 99: CONTENT (KHOA HỌC THÂM DỤNG DỮ LIỆU ĐẶC THÙ)
@@ -27,7 +24,7 @@ slide99Content.addText("KHOA HỌC THÂM DỤNG DỮ LIỆU", { placeholder: "ti
 addText(
   slide99Content,
   [
-    { text: "🔬 Bối cảnh Khoa học Thâm dụng Dữ liệu:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🔬 Bối cảnh Khoa học Thâm dụng Dữ liệu:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Bùng nổ dữ liệu: ", options: { bold: true } },
     { text: "Kính thiên văn thu Terabyte mỗi đêm; giải trình tự Gen giảm giá triệu lần; vệ tinh quét toàn cầu liên tục.\n\n" },
     { text: "• Mô thức thứ tư (The 4th Paradigm):\n", options: { bold: true, color: DUE_COLORS.orange } },
@@ -37,9 +34,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -52,7 +49,7 @@ addText(
 addText(
   slide99Content,
   [
-    { text: "⚠️ 4 Thách thức Đặc thù (Han & Kamber):\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "⚠️ 4 Thách thức Đặc thù (Han & Kamber):\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "1. Tích hợp nguồn không đồng nhất (đa độ phân giải).\n" },
     { text: "2. Dữ liệu phức tạp 6.1 (chuỗi, đồ thị, không gian, ảnh).\n" },
     { text: "3. Tri thức miền (Domain knowledge) BẮT BUỘC hợp lý về vật lý/sinh học.\n" },
@@ -62,9 +59,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -80,16 +77,16 @@ addText(
   "💡 Điểm nối kinh tế: Kỹ thuật thử lửa ở quy mô lớn nhất sẽ chảy ngược về ứng dụng kinh doanh (thị giác soi lỗi sản phẩm).",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -106,7 +103,7 @@ const slide100Content = pptx.addSlide({ masterName: "CONTENT" });
 slide100Content.addText("CHƯƠNG 6 – CÁC HƯỚNG NGHIÊN CỨU TRONG KPDL", { placeholder: "footer" });
 slide100Content.addText("BỐN MIỀN ỨNG DỤNG TIÊU BIỂU", { placeholder: "title" });
 
-slide100Content.addTable(
+addTable(slide100Content, 
   [
     [
       { text: "Miền Khoa học", options: { bold: true, fill: { color: DUE_COLORS.blue }, color: DUE_COLORS.white } },
@@ -143,8 +140,8 @@ slide100Content.addTable(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(23.8),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     border: { pt: 1, color: "CCCCCC" },
   }
 );
@@ -154,16 +151,16 @@ addText(
   "💡 Điểm chạm kinh doanh: Bài toán 'Bảo trì dự đoán' có bản chất giống hệt bài toán Dự đoán Churn (Máy móc rời bỏ = Khách rời bỏ).",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -183,7 +180,7 @@ slide101Content.addText("KỸ THUẬT PHẦN MỀM & GIÁM SÁT CÔNG TRÌNH", {
 addText(
   slide101Content,
   [
-    { text: "💻 Kỹ thuật Phần mềm (Software Mining):\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "💻 Kỹ thuật Phần mềm (Software Mining):\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Khai phá Mã nguồn & Git log: ", options: { bold: true } },
     { text: "Dự đoán mô-đun phần mềm dễ phát sinh lỗi ➔ Tập trung kiểm thử.\n\n" },
     { text: "• Ứng dụng hiện đại: ", options: { bold: true } },
@@ -193,9 +190,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -208,7 +205,7 @@ addText(
 addText(
   slide101Content,
   [
-    { text: "🏗️ Giám sát Sức khỏe Công trình (SHM):\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🏗️ Giám sát Sức khỏe Công trình (SHM):\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Chuỗi Cảm biến Cầu đường / Đập thủy điện: ", options: { bold: true } },
     { text: "Gắn cảm biến độ nghiêng, rung lắc ➔ Phát hiện bất thường (Outlier 6.3.4) trước khi hư hỏng kết cấu.\n\n" },
     { text: "• Góc nhìn Kinh tế: ", options: { bold: true, color: DUE_COLORS.orange } },
@@ -218,9 +215,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -236,16 +233,16 @@ addText(
   "💡 Ví dụ thực tế: Chuyển từ bảo trì theo LỊCH CỐ ĐỊNH sang bảo trì theo TÌNH TRẠNG giúp hàng không/đường sắt tiết kiệm chi phí kỷ lục.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -273,8 +270,8 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
@@ -296,8 +293,8 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
@@ -318,10 +315,10 @@ addText(
   ],
   {
     x: cmToInch(0.8),
-    y: cmToInch(5.8),
+    y: 0, // trôi dưới thẻ cùng cột
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
@@ -342,10 +339,10 @@ addText(
   ],
   {
     x: cmToInch(13.1),
-    y: cmToInch(5.8),
+    y: 0, // trôi dưới thẻ cùng cột
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
@@ -362,16 +359,16 @@ addText(
   "💡 Đánh giá Kinh tế: Nhà kinh tế không cần làm kỹ thuật sâu nhưng phải định giá được dòng tiền và hiệu quả dự án dữ liệu.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -391,7 +388,7 @@ slide103Content.addText("TÓM TẮT 6.3.3 — KHOA HỌC & KỸ THUẬT", { plac
 addText(
   slide103Content,
   [
-    { text: "📌 Tổng kết Nội dung Mục 6.3.3:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "📌 Tổng kết Nội dung Mục 6.3.3:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Mô thức thứ tư: ", options: { bold: true } },
     { text: "Khoa học thâm dụng dữ liệu đòi hỏi Tri thức miền BẮT BUỘC.\n\n" },
     { text: "• 4 Miền chính: ", options: { bold: true } },
@@ -403,9 +400,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -418,7 +415,7 @@ addText(
 addText(
   slide103Content,
   [
-    { text: "🚀 Chuyển giao tiếp theo — Mục 6.3.4:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🚀 Chuyển giao tiếp theo — Mục 6.3.4:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Nhất quán khung tư duy: ", options: { bold: true } },
     { text: "Cùng thuật toán — khác miền ứng dụng.\n\n" },
     { text: "• Tiếp theo (Mục 6.3.4):\n", options: { bold: true, color: DUE_COLORS.orange } },
@@ -428,9 +425,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -446,16 +443,16 @@ addText(
   "💡 Bước tiếp theo: Chuyển sang 6.3.4 — Khám phá ứng dụng Khai phá dữ liệu trong An ninh mạng và Phát hiện Xâm nhập.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }

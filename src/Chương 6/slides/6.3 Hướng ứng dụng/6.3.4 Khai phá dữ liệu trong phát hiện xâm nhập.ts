@@ -1,5 +1,5 @@
 import { SlideGenerator } from "../../../slide-generator.ts";
-import { addText, DUE_COLORS } from "../../../template/due-template.ts";
+import { addSectionText, addTable, addText, DUE_COLORS } from "../../../template/due-template.ts";
 import { cmToInch } from "../../../utils.ts";
 
 const pptx = SlideGenerator.pptx;
@@ -9,13 +9,10 @@ const pptx = SlideGenerator.pptx;
 // ----------------------------------------------------
 const slide104Section = pptx.addSlide({ masterName: "SECTION" });
 slide104Section.addText("CHƯƠNG 6 – CÁC HƯỚNG NGHIÊN CỨU TRONG KPDL", { placeholder: "footer" });
-slide104Section.addText("6.3.4. KHAI PHÁ DỮ LIỆU TRONG PHÁT HIỆN XÂM NHẬP", { placeholder: "title" });
-slide104Section.addText("Intrusion Detection & Prevention — Khi KPDL bảo vệ chính hệ thống dữ liệu", { placeholder: "content" });
-slide104Section.addText(
-  "\"Từ 'khai phá cái gì, bằng gì' sang bài toán an ninh mạng — Nơi khai phá dữ liệu bảo vệ sự sống còn của doanh nghiệp số.\"\n\n" +
-  "Khung An toàn CIA  |  Signature-based vs Anomaly-based  |  Isolation Forest & Outlier",
-  { placeholder: "subContent" }
-);
+addSectionText(slide104Section, "title", "6.3.4. KHAI PHÁ DỮ LIỆU TRONG PHÁT HIỆN XÂM NHẬP");
+addSectionText(slide104Section, "content", "Intrusion Detection & Prevention — Khi KPDL bảo vệ chính hệ thống dữ liệu");
+addSectionText(slide104Section, "subContent", "\"Từ 'khai phá cái gì, bằng gì' sang bài toán an ninh mạng — Nơi khai phá dữ liệu bảo vệ sự sống còn của doanh nghiệp số.\"\n\n" +
+  "Khung An toàn CIA  |  Signature-based vs Anomaly-based  |  Isolation Forest & Outlier");
 
 // ----------------------------------------------------
 // Slide 105: CONTENT (PHÁT HIỆN XÂM NHẬP & VAI TRÒ KPDL)
@@ -27,7 +24,7 @@ slide105Content.addText("PHÁT HIỆN XÂM NHẬP & VAI TRÒ KPDL", { placeholde
 addText(
   slide105Content,
   [
-    { text: "🛡️ Định nghĩa Xâm nhập & Khung CIA:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🛡️ Định nghĩa Xâm nhập & Khung CIA:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Xâm nhập (Intrusion): ", options: { bold: true } },
     { text: "Hành vi đe dọa 3 thuộc tính an toàn thông tin:\n\n" },
     { text: "  - Confidentiality: ", options: { bold: true } },
@@ -43,9 +40,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -58,7 +55,7 @@ addText(
 addText(
   slide105Content,
   [
-    { text: "⚡ Hạn chế của Luật Cố định & Vai trò KPDL:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "⚡ Hạn chế của Luật Cố định & Vai trò KPDL:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Hạn chế của Rule-based: ", options: { bold: true } },
     { text: "Hệ thống truyền thống dựa trên luật chuyên gia viết tay ➔ Không theo kịp dữ liệu log khổng lồ và tấn công biến đổi nhanh.\n\n" },
     { text: "• Vai trò KPDL: ", options: { bold: true, color: DUE_COLORS.orange } },
@@ -68,9 +65,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -86,16 +83,16 @@ addText(
   "💡 Nhấn mạnh khung CIA: Đây là khung tư duy chuẩn an toàn thông tin mà nhà quản lý bắt buộc phải hiểu khi làm việc với IT.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -112,7 +109,7 @@ const slide106Content = pptx.addSlide({ masterName: "CONTENT" });
 slide106Content.addText("CHƯƠNG 6 – CÁC HƯỚNG NGHIÊN CỨU TRONG KPDL", { placeholder: "footer" });
 slide106Content.addText("SIGNATURE-BASED vs ANOMALY-BASED", { placeholder: "title" });
 
-slide106Content.addTable(
+addTable(slide106Content, 
   [
     [
       { text: "Tiêu chí so sánh", options: { bold: true, fill: { color: DUE_COLORS.blue }, color: DUE_COLORS.white } },
@@ -144,8 +141,8 @@ slide106Content.addTable(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(23.8),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     border: { pt: 1, color: "CCCCCC" },
   }
 );
@@ -155,16 +152,16 @@ addText(
   "💡 Ví dụ trực quan: Signature-based giống 'nhận diện tội phạm qua ảnh lệnh truy nã'; Anomaly-based giống 'phát hiện kẻ có hành vi lạ'.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -184,7 +181,7 @@ slide107Content.addText("VAI TRÒ KPDL TRONG AN NINH MẠNG", { placeholder: "ti
 addText(
   slide107Content,
   [
-    { text: "🛠️ Tái sử dụng Công cụ Ch.3 – Ch.5:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🛠️ Tái sử dụng Công cụ Ch.3 – Ch.5:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Phân lớp (Classification Ch.3): ", options: { bold: true } },
     { text: "Gán nhãn kết nối 'Bình thường' hay 'Tấn công' cụ thể (DoS, Probe, U2R).\n\n" },
     { text: "• Phát hiện Ngoại lệ (Outlier Ch.4): ", options: { bold: true } },
@@ -196,9 +193,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -211,7 +208,7 @@ addText(
 addText(
   slide107Content,
   [
-    { text: "🌊 Khai phá Luồng & Trực quan hóa:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🌊 Khai phá Luồng & Trực quan hóa:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Data Stream Mining (Online Learning):\n", options: { bold: true } },
     { text: "  Xử lý gói tin liên tục theo thời gian thực; mô hình cập nhật tại chỗ vì không thể lưu toàn bộ lịch sử.\n\n" },
     { text: "• Trực quan hóa Tấn công (6.2.3):\n", options: { bold: true, color: DUE_COLORS.orange } },
@@ -221,9 +218,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -239,16 +236,16 @@ addText(
   "💡 Tính hệ thống: Mục 6.3.4 thực chất tổng hợp lại toàn bộ kho công cụ Ch.3–5 và 6.2.3 để giải quyết bài toán An ninh mạng.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -276,8 +273,8 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
@@ -299,8 +296,8 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
@@ -321,10 +318,10 @@ addText(
   ],
   {
     x: cmToInch(0.8),
-    y: cmToInch(5.8),
+    y: 0, // trôi dưới thẻ cùng cột
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
@@ -345,10 +342,10 @@ addText(
   ],
   {
     x: cmToInch(13.1),
-    y: cmToInch(5.8),
+    y: 0, // trôi dưới thẻ cùng cột
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
@@ -365,16 +362,16 @@ addText(
   "💡 Góc nhìn Kinh tế: An ninh mạng là bài toán Quản trị rủi ro — Cân đối Chi phí phòng thủ vs Tổn thất kỳ vọng bị tấn công.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -394,13 +391,13 @@ slide109Content.addText("DEMO 6.3.4: BẤT THƯỜNG MẠNG (NSL-KDD)", { placeh
 addText(
   slide109Content,
   [
-    { text: "💻 Quy trình Thực hành Python (NSL-KDD Dataset):\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "💻 Thực hành Python (NSL-KDD):\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Bước 1: ", options: { bold: true } },
-    { text: "Nạp bộ NSL-KDD (chuẩn học thuật an ninh mạng); khảo sát thuộc tính kết nối.\n\n" },
+    { text: "Nạp bộ NSL-KDD; khảo sát các thuộc tính kết nối.\n\n" },
     { text: "• Bước 2: ", options: { bold: true } },
-    { text: "Huấn luyện Phân lớp (`RandomForestClassifier`) ➔ Đánh giá ma trận nhầm lẫn & Recall/Precision.\n\n" },
+    { text: "`RandomForestClassifier` ➔ ma trận nhầm lẫn, Recall/Precision.\n\n" },
     { text: "• Bước 3: ", options: { bold: true } },
-    { text: "Chạy `IsolationForest` không dùng nhãn ➔ So sánh khả năng phát hiện tấn công Zero-day mới.\n\n" },
+    { text: "`IsolationForest` không dùng nhãn ➔ so khả năng bắt tấn công zero-day.\n\n" },
     { text: "• Bước 4: ", options: { bold: true } },
     { text: "Giả lập Khai phá luồng dữ liệu theo Batch liên tiếp." }
   ],
@@ -408,9 +405,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -423,7 +420,7 @@ addText(
 addText(
   slide109Content,
   [
-    { text: "❓ Thảo luận Trải nghiệm & Uy tín:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "❓ Thảo luận Trải nghiệm & Uy tín:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "“Nếu ngân hàng phải chọn giữa Mô hình Recall cao nhưng Precision thấp (bắt nhiều gian lận nhưng chặn nhầm khách) vs Mô hình ngược lại — lựa chọn nào tốt hơn?”\n\n", options: { bold: true, color: DUE_COLORS.orange } },
     { text: "• Đánh đổi Quản trị:\n", options: { bold: true } },
     { text: "  Cân bằng giữa Mất tiền do lừa đảo vs Mất khách hàng do trải nghiệm bị gián đoạn." }
@@ -432,9 +429,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -447,24 +444,24 @@ addText(
 
 addText(
   slide109Content,
-  "💡 Điểm chốt bài học: Sự lựa chọn đánh đổi Recall/Precision được quyết định bởi Khẩu vị rủi ro và Uy tín thương hiệu.",
+  "💡 Kẻ tấn công liên tục đổi cách né mô hình — dữ liệu ở đây trôi rất nhanh.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
 );
 
 slide109Content.addNotes(
-  "Giảng viên chiếu file demo_6_3_4_intrusion_detection.py và mở bài thảo luận ma trận nhầm lẫn."
+  "Giảng viên chiếu file demo_6_3_4_intrusion_detection.py. Câu hỏi drift bổ sung góc mới thay vì lặp lại trade-off recall/precision đã bàn ở slide trước; dấu hiệu mô hình 'hết hạn': tỷ lệ cảnh báo đổi đột ngột, phân bố đặc trưng lệch so với tập huấn luyện — dẫn sang stream mining/MLOps ở 6.4.2."
 );

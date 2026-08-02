@@ -1,5 +1,5 @@
 import { SlideGenerator } from "../../slide-generator.ts";
-import { addText, DUE_COLORS } from "../../template/due-template.ts";
+import { addTable, addText, DUE_COLORS } from "../../template/due-template.ts";
 import { cmToInch } from "../../utils.ts";
 
 const pptx = SlideGenerator.pptx;
@@ -10,7 +10,7 @@ const pptx = SlideGenerator.pptx;
 const slide1 = pptx.addSlide({ masterName: "TITLE" });
 slide1.addText("CHƯƠNG 6", { placeholder: "title" });
 slide1.addText("CÁC HƯỚNG NGHIÊN CỨU TRONG KHAI PHÁ DỮ LIỆU", { placeholder: "subtitle" });
-slide1.addText("KHAI PHÁ DỮ LIỆU (STA5009N)", { placeholder: "subject" });
+slide1.addText("KHAI PHÁ DỮ LIỆU", { placeholder: "subject" });
 slide1.addText("Khoa Thống kê - Tin học", { placeholder: "faculty" });
 
 // ----------------------------------------------------
@@ -41,9 +41,9 @@ addText(
     y: cmToInch(3.0),
     w: cmToInch(15.0),
     h: cmToInch(8.0),
-    fontSize: 11,
+    fontSize: 11.5,
     color: DUE_COLORS.white,
-    lineSpacing: 17,
+    lineSpacing: 16,
     valign: "top",
   }
 );
@@ -80,9 +80,9 @@ addText(
     y: cmToInch(3.0),
     w: cmToInch(15.0),
     h: cmToInch(8.0),
-    fontSize: 11,
+    fontSize: 11.5,
     color: DUE_COLORS.white,
-    lineSpacing: 17,
+    lineSpacing: 16,
     valign: "top",
   }
 );
@@ -101,7 +101,7 @@ slide3a.addText("TÌNH HUỐNG: BỐI CẢNH 3 NGUỒN DỮ LIỆU", { placehold
 addText(
   slide3a,
   [
-    { text: "🏢 Bối cảnh Công ty Chứng khoán TP.HCM:\n", options: { bold: true, fontSize: 12 } },
+    { text: "🏢 Bối cảnh Công ty Chứng khoán TP.HCM:\n", options: { bold: true, fontSize: 13.5 } },
     { text: "Hệ thống Hỗ trợ Đầu tư nắm 3 nguồn dữ liệu:\n\n" },
     { text: "• Nguồn 1 (Chuỗi): ", options: { bold: true } },
     { text: "Giá VN-Index 10 năm theo ngày ➔ Dự báo xu hướng ngắn hạn.\n\n" },
@@ -114,9 +114,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -129,7 +129,7 @@ addText(
 addText(
   slide3a,
   [
-    { text: "❓ Câu hỏi bài toán thực tế:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "❓ Câu hỏi bài toán thực tế:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• ", options: { bold: true } },
     { text: "Dự báo VN-Index 10 phiên tới dùng mô hình nào, sai số ra sao?\n\n" },
     { text: "• ", options: { bold: true } },
@@ -143,9 +143,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.orange, width: 1 },
@@ -161,16 +161,16 @@ addText(
   "💡 Nhận xét: Mỗi nguồn dữ liệu mang đặc thù riêng biệt, vượt xa mô hình dữ liệu dạng bảng quan hệ truyền thống.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -190,16 +190,16 @@ slide3b.addText("TÌNH HUỐNG: THẢO LUẬN & ĐỊNH HƯỚNG", { placeholder
 addText(
   slide3b,
   [
-    { text: "💬 Câu hỏi thảo luận mở đầu:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "💬 Câu hỏi thảo luận mở đầu:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "“Với các kỹ thuật đã học từ Chương 3 đến Chương 5 (Phân lớp, Phân cụm, Luật kết hợp), anh/chị giải quyết được nguồn dữ liệu nào trong ba nguồn trên?\n\nVướng mắc cốt lõi nằm ở đâu?”" }
   ],
   {
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 15,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.blue },
     bold: true,
@@ -214,7 +214,7 @@ addText(
 addText(
   slide3b,
   [
-    { text: "🎯 Gợi ý & Định hướng giảng viên:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🎯 Gợi ý & Định hướng giảng viên:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Nguồn 1 (Chuỗi): ", options: { bold: true } },
     { text: "Vi phạm giả định quan sát độc lập (giá hôm nay phụ thuộc hôm qua).\n\n" },
     { text: "• Nguồn 2 (Mạng): ", options: { bold: true } },
@@ -226,9 +226,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.green, width: 1 },
@@ -244,16 +244,16 @@ addText(
   "💡 Nguyên tắc vàng: Kỹ thuật cũ không sai, chỉ cần bước biểu diễn dữ liệu phù hợp trước khi áp dụng!",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -273,7 +273,7 @@ slide4.addText("CÂU HỎI: KỸ THUẬT ĐÃ HỌC CÓ ĐỦ DÙNG?", { placeho
 addText(
   slide4,
   [
-    { text: "📊 Giới hạn của Kỹ thuật Ch.3–5:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "📊 Giới hạn của Kỹ thuật Ch.3–5:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Giả định dữ liệu dạng bảng:\n", options: { bold: true } },
     { text: "  - Mỗi dòng là 1 quan sát độc lập (i.i.d).\n  - Mỗi cột là 1 thuộc tính xác định.\n\n" },
     { text: "• Giới hạn khi áp dụng vào thực tế:\n", options: { bold: true } },
@@ -283,9 +283,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -298,7 +298,7 @@ addText(
 addText(
   slide4,
   [
-    { text: "🚀 Nhu cầu Hướng nghiên cứu mới:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🚀 Nhu cầu Hướng nghiên cứu mới:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Khai phá loại dữ liệu phức tạp:\n", options: { bold: true } },
     { text: "  Han & Kamber gọi là Mining Complex Data Types (Ch.13.1).\n\n" },
     { text: "• Yêu cầu kỹ thuật chuyên biệt:\n", options: { bold: true } },
@@ -308,9 +308,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.orange, width: 1 },
@@ -326,16 +326,16 @@ addText(
   "💡 Thông điệp: Việc mở rộng sang các dạng dữ liệu phức tạp là bước chuyển tất yếu của Khai phá dữ liệu hiện đại.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -359,16 +359,16 @@ addText(
     { text: "• Chuỗi thời gian & mẫu tuần tự (6.1.1)\n" },
     { text: "• Đồ thị & Mạng xã hội (6.1.2)\n" },
     { text: "• Văn bản, Đa phương tiện & Không gian (6.1.3)\n\n" },
-    { text: "📌 6.2 Hướng kỹ thuật (Khai phá BẰNG GÌ?):\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "📌 6.2 Hướng kỹ thuật (Khai phá BẰNG GÌ?):\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Khai phá thống kê, Lý thuyết, Trực quan, Học sâu" }
   ],
   {
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -381,10 +381,10 @@ addText(
 addText(
   slide5,
   [
-    { text: "🎯 6.3 Hướng ứng dụng (Khai phá CHO AI?):\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🎯 6.3 Hướng ứng dụng (Khai phá CHO AI?):\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Tài chính, Bán lẻ, Viễn thông, An ninh mạng\n" },
     { text: "• Hệ thống gợi ý & Tác động xã hội / Quyền riêng tư\n\n" },
-    { text: "🏁 6.4 Tóm tắt & Bài tập tổng hợp:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🏁 6.4 Tóm tắt & Bài tập tổng hợp:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Ôn tập xuyên suốt trên bộ dữ liệu Thẻ tín dụng\n" },
     { text: "• Xu hướng phát triển tương lai của KPDL" }
   ],
@@ -392,9 +392,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -410,16 +410,16 @@ addText(
   "💡 Trọng tâm hiện tại: Bắt đầu khám phá nhánh 6.1 — Hướng dữ liệu với các loại dữ liệu phức tạp.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }

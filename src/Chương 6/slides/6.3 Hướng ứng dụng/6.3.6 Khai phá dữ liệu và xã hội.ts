@@ -1,5 +1,5 @@
 import { SlideGenerator } from "../../../slide-generator.ts";
-import { addText, DUE_COLORS } from "../../../template/due-template.ts";
+import { addSectionText, addTable, addText, DUE_COLORS } from "../../../template/due-template.ts";
 import { cmToInch } from "../../../utils.ts";
 
 const pptx = SlideGenerator.pptx;
@@ -9,13 +9,10 @@ const pptx = SlideGenerator.pptx;
 // ----------------------------------------------------
 const slide116Section = pptx.addSlide({ masterName: "SECTION" });
 slide116Section.addText("CHƯƠNG 6 – CÁC HƯỚNG NGHIÊN CỨU TRONG KPDL", { placeholder: "footer" });
-slide116Section.addText("6.3.6. KHAI PHÁ DỮ LIỆU VÀ XÃ HỘI", { placeholder: "title" });
-slide116Section.addText("Data Mining and Society — Quyền riêng tư, Pháp lý và Đạo đức dữ liệu", { placeholder: "content" });
-slide116Section.addText(
-  "\"Khép vòng mục 6.3 — Sau khi thấy KPDL phục vụ tài chính, bán lẻ, an ninh, gợi ý — Giờ đặt câu hỏi: Xã hội trả giá gì?\"\n\n" +
-  "Khai phá Vô hình  |  GDPR & Nghị định 13/2023  |  Trách nhiệm Quản trị Dữ liệu",
-  { placeholder: "subContent" }
-);
+addSectionText(slide116Section, "title", "6.3.6. KHAI PHÁ DỮ LIỆU VÀ XÃ HỘI");
+addSectionText(slide116Section, "content", "Data Mining and Society — Quyền riêng tư, Pháp lý và Đạo đức dữ liệu");
+addSectionText(slide116Section, "subContent", "\"Khép vòng mục 6.3 — Sau khi thấy KPDL phục vụ tài chính, bán lẻ, an ninh, gợi ý — Giờ đặt câu hỏi: Xã hội trả giá gì?\"\n\n" +
+  "Khai phá Vô hình  |  GDPR & Nghị định 13/2023  |  Trách nhiệm Quản trị Dữ liệu");
 
 // ----------------------------------------------------
 // Slide 117: CONTENT (KHAI PHÁ DỮ LIỆU "KHẮP NƠI VÀ VÔ HÌNH")
@@ -27,7 +24,7 @@ slide117Content.addText("KHAI PHÁ DỮ LIỆU VÔ HÌNH", { placeholder: "title
 addText(
   slide117Content,
   [
-    { text: "👁️ Hiện diện Vô hình trong Đời sống:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "👁️ Hiện diện Vô hình trong Đời sống:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Hiện diện khắp nơi: ", options: { bold: true } },
     { text: "Google search, Bảng tin Facebook, Giá vé máy bay động, Duyệt tín dụng tự động, Chống spam.\n\n" },
     { text: "• Sự bất đối xứng thông tin: ", options: { bold: true, color: DUE_COLORS.orange } },
@@ -37,9 +34,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -52,7 +49,7 @@ addText(
 addText(
   slide117Content,
   [
-    { text: "✈️ Giá động & Phân biệt Đối xử (Dynamic Pricing):\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "✈️ Giá động & Phân biệt Đối xử (Dynamic Pricing):\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Định giá động (Dynamic Pricing):\n", options: { bold: true } },
     { text: "  Cùng 1 chuyến bay, 2 người dùng thấy 2 giá khác nhau dựa trên lịch sử duyệt web.\n\n" },
     { text: "• Thảo luận Kinh tế vi mô: ", options: { bold: true } },
@@ -62,9 +59,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -80,16 +77,16 @@ addText(
   "💡 Ranh giới quản trị: Phân định giữa Cá nhân hóa hữu ích vs Giám sát thao túng hành vi người dùng.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -109,7 +106,7 @@ slide118Content.addText("QUYỀN RIÊNG TƯ & NGHỊ ĐỊNH 13/2023", { placeho
 addText(
   slide118Content,
   [
-    { text: "🔒 Privacy-Preserving Data Mining & GDPR:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🔒 Privacy-Preserving Data Mining & GDPR:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Kỹ thuật bảo vệ quyền riêng tư: ", options: { bold: true } },
     { text: "k-Anonymity (làm nhiễu), Thêm nhiễu ngẫu nhiên, Khai phá phân tán (Federated learning).\n\n" },
     { text: "• Khung chuẩn quốc tế (GDPR - EU):\n", options: { bold: true } },
@@ -119,9 +116,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -134,7 +131,7 @@ addText(
 addText(
   slide118Content,
   [
-    { text: "🇻🇳 Khung Pháp lý tại Việt Nam:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🇻🇳 Khung Pháp lý tại Việt Nam:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Nghị định 13/2023/NĐ-CP & Luật Bảo vệ Dữ liệu cá nhân:\n", options: { bold: true, color: DUE_COLORS.orange } },
     { text: "  Doanh nghiệp khai phá dữ liệu khách BẮT BUỘC có sự đồng ý, tuân thủ nguyên tắc mục đích rõ ràng và bảo mật lưu trữ.\n\n" },
     { text: "• Lợi thế cạnh tranh: ", options: { bold: true } },
@@ -144,9 +141,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -162,16 +159,16 @@ addText(
   "💡 Thông điệp quản trị: Tuân thủ Nghị định 13/2023 không chỉ là nghĩa vụ mà là tài sản niềm tin với khách hàng.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -199,8 +196,8 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
@@ -222,8 +219,8 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
@@ -244,10 +241,10 @@ addText(
   ],
   {
     x: cmToInch(0.8),
-    y: cmToInch(5.8),
+    y: 0, // trôi dưới thẻ cùng cột
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
@@ -268,10 +265,10 @@ addText(
   ],
   {
     x: cmToInch(13.1),
-    y: cmToInch(5.8),
+    y: 0, // trôi dưới thẻ cùng cột
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
@@ -288,16 +285,16 @@ addText(
   "💡 Khung trình bày nhóm 3 phút: Lợi ích ➔ Rủi ro ➔ Điều kiện chấp nhận ➔ Đối chiếu Nghị định 13/2023 & GDPR.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -314,7 +311,7 @@ const slide120Content = pptx.addSlide({ masterName: "CONTENT" });
 slide120Content.addText("CHƯƠNG 6 – CÁC HƯỚNG NGHIÊN CỨU TRONG KPDL", { placeholder: "footer" });
 slide120Content.addText("TÓM TẮT 6.3.6: PHÁP LÝ & ĐẠO ĐỨC", { placeholder: "title" });
 
-slide120Content.addTable(
+addTable(slide120Content, 
   [
     [
       { text: "Khía cạnh Đạo đức", options: { bold: true, fill: { color: DUE_COLORS.blue }, color: DUE_COLORS.white } },
@@ -346,8 +343,8 @@ slide120Content.addTable(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(23.8),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     border: { pt: 1, color: "CCCCCC" },
   }
 );
@@ -357,16 +354,16 @@ addText(
   "💡 Khép lại Mục 6.3 Hướng ứng dụng (CHO AI): Đã đi qua CÁI GÌ (6.1), BẰNG GÌ (6.2), và CHO AI (6.3)!",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }

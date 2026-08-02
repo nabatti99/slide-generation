@@ -1,5 +1,5 @@
 import { SlideGenerator } from "../../../slide-generator.ts";
-import { addText, DUE_COLORS } from "../../../template/due-template.ts";
+import { addSectionText, addTable, addText, DUE_COLORS } from "../../../template/due-template.ts";
 import { cmToInch } from "../../../utils.ts";
 
 const pptx = SlideGenerator.pptx;
@@ -9,13 +9,10 @@ const pptx = SlideGenerator.pptx;
 // ----------------------------------------------------
 const slide47Section = pptx.addSlide({ masterName: "SECTION" });
 slide47Section.addText("CHƯƠNG 6 – CÁC HƯỚNG NGHIÊN CỨU TRONG KPDL", { placeholder: "footer" });
-slide47Section.addText("6.2.1. KHAI PHÁ DỮ LIỆU THỐNG KÊ", { placeholder: "title" });
-slide47Section.addText("Statistical Data Mining — Trường phái kỹ thuật lâu đời và minh bạch nhất", { placeholder: "content" });
-slide47Section.addText(
-  "\"Thống kê là 'tổ tiên' lâu đời nhất — và là bộ công cụ đáng tin cậy nhất khi cần giải thích và kiểm định.\"\n\n" +
-  "Kho kỹ thuật Thống kê  |  Mô hình GLM & Survival  |  Cảnh giác với Dữ liệu lớn",
-  { placeholder: "subContent" }
-);
+addSectionText(slide47Section, "title", "6.2.1. KHAI PHÁ DỮ LIỆU THỐNG KÊ");
+addSectionText(slide47Section, "content", "Statistical Data Mining — Trường phái kỹ thuật lâu đời và minh bạch nhất");
+addSectionText(slide47Section, "subContent", "\"Thống kê là 'tổ tiên' lâu đời nhất — và là bộ công cụ đáng tin cậy nhất khi cần giải thích và kiểm định.\"\n\n" +
+  "Kho kỹ thuật Thống kê  |  Mô hình GLM & Survival  |  Cảnh giác với Dữ liệu lớn");
 
 // ----------------------------------------------------
 // Slide 48: CONTENT (KHAI PHÁ DỮ LIỆU VÀ THỐNG KÊ)
@@ -27,7 +24,7 @@ slide48Content.addText("KHAI PHÁ DỮ LIỆU VÀ THỐNG KÊ", { placeholder: "
 addText(
   slide48Content,
   [
-    { text: "📊 Thống kê cổ điển vs Khai phá Dữ liệu:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "📊 Thống kê cổ điển vs Khai phá Dữ liệu:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Thống kê cổ điển (Confirmatory):\n", options: { bold: true } },
     { text: "  Bắt đầu từ GIẢ THUYẾT ➔ Thu thập mẫu nhỏ thiết kế cẩn thận ➔ Kiểm định p-value.\n\n" },
     { text: "• Khai phá dữ liệu (Exploratory):\n", options: { bold: true } },
@@ -37,9 +34,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -52,7 +49,7 @@ addText(
 addText(
   slide48Content,
   [
-    { text: "⚠️ 2 Cảnh giác Thống kê với Dữ liệu lớn:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "⚠️ 2 Cảnh giác Thống kê với Dữ liệu lớn:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "1. Tương quan giả (Spurious correlation):\n", options: { bold: true } },
     { text: "   Dữ liệu lớn dễ cho kết quả 'có ý nghĩa thống kê' nhưng VÔ NGHĨA thực tiễn.\n\n" },
     { text: "2. Data dredging (Bới dữ liệu):\n", options: { bold: true } },
@@ -62,9 +59,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.orange, width: 1 },
@@ -80,16 +77,16 @@ addText(
   "💡 Quan điểm Han & Kamber: Hai lĩnh vực bổ trợ nhau — Thống kê mạnh về mô hình chặt chẽ; KPDL mạnh về quy mô và tự động hóa.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -106,7 +103,7 @@ const slide49Content = pptx.addSlide({ masterName: "CONTENT" });
 slide49Content.addText("CHƯƠNG 6 – CÁC HƯỚNG NGHIÊN CỨU TRONG KPDL", { placeholder: "footer" });
 slide49Content.addText("KHO KỸ THUẬT THỐNG KÊ (PHẦN 1)", { placeholder: "title" });
 
-slide49Content.addTable(
+addTable(slide49Content, 
   [
     [
       { text: "Kỹ thuật Thống kê", options: { bold: true, fill: { color: DUE_COLORS.blue }, color: DUE_COLORS.white } },
@@ -138,8 +135,8 @@ slide49Content.addTable(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(23.8),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     border: { pt: 1, color: "CCCCCC" },
   }
 );
@@ -149,16 +146,16 @@ addText(
   "💡 Định vị lại kiến thức: GLM Logistic chính là mô hình phân lớp nhị phân quen thuộc đã học ở Chương 4.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -175,7 +172,7 @@ const slide50Content = pptx.addSlide({ masterName: "CONTENT" });
 slide50Content.addText("CHƯƠNG 6 – CÁC HƯỚNG NGHIÊN CỨU TRONG KPDL", { placeholder: "footer" });
 slide50Content.addText("KHO KỸ THUẬT THỐNG KÊ (PHẦN 2)", { placeholder: "title" });
 
-slide50Content.addTable(
+addTable(slide50Content, 
   [
     [
       { text: "Kỹ thuật Thống kê", options: { bold: true, fill: { color: DUE_COLORS.blue }, color: DUE_COLORS.white } },
@@ -207,8 +204,8 @@ slide50Content.addTable(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(23.8),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     border: { pt: 1, color: "CCCCCC" },
   }
 );
@@ -218,16 +215,16 @@ addText(
   "💡 Giá trị của Survival Analysis: Giúp trả lời 'BAO LÂU NỮA sự kiện xảy ra?' thay vì chỉ 'CÓ xảy ra hay không?'.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -249,14 +246,14 @@ addText(
   slide51Content,
   [
     { text: "💳 Chấm điểm Tín dụng (Credit Scorecard):\n", options: { bold: true, color: DUE_COLORS.green } },
-    { text: "CIC và các ngân hàng dùng Logistic Regression (GLM) làm chuẩn vì giải trình được từng hệ số với Ngân hàng Nhà nước." }
+    { text: "Logistic Regression (GLM) là xương sống của mọi scorecard vì giải trình được từng hệ số — quy trình đầy đủ ở 6.3.1." }
   ],
   {
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
@@ -278,8 +275,8 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
@@ -300,10 +297,10 @@ addText(
   ],
   {
     x: cmToInch(0.8),
-    y: cmToInch(5.8),
+    y: 0, // trôi dưới thẻ cùng cột
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
@@ -324,10 +321,10 @@ addText(
   ],
   {
     x: cmToInch(13.1),
-    y: cmToInch(5.8),
+    y: 0, // trôi dưới thẻ cùng cột
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
@@ -344,16 +341,16 @@ addText(
   "💡 Thực tiễn Việt Nam: Thống kê vẫn là trường phái kỹ thuật thống trị trong tài chính, tín dụng và nghiên cứu thị trường.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -373,23 +370,23 @@ slide52Content.addText("BÀI TẬP 6.2.1: MÔ HÌNH GLM THẺ TÍN DỤNG", { pl
 addText(
   slide52Content,
   [
-    { text: "📝 Đề bài Thực hành Python (Credit Card Dataset):\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "📝 Đề bài thực hành Python:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Câu 1: ", options: { bold: true } },
-    { text: "Ước lượng hồi quy Logistic: `is_fraud ~ amt + category + giờ_giao_dịch`. Đọc và diễn giải Odds Ratio của biến `amt`.\n\n" },
+    { text: "Logistic `is_fraud ~ amt + category + giờ`; diễn giải Odds Ratio của `amt`.\n\n" },
     { text: "• Câu 2: ", options: { bold: true } },
-    { text: "Chạy ANOVA: Giá trị giao dịch trung bình `amt` có khác biệt có ý nghĩa giữa các `category` không?\n\n" },
+    { text: "ANOVA: `amt` trung bình khác nhau giữa các `category` không?\n\n" },
     { text: "• Câu 3 (thảo luận): ", options: { bold: true } },
-    { text: "Tỷ lệ fraud ~0,5%, mô hình đoán 'tất cả bình thường' đạt Accuracy 99,5% ➔ Accuracy còn ý nghĩa không?\n\n" },
+    { text: "Fraud chỉ ~0,5%, đoán 'tất cả bình thường' vẫn đạt 99,5% ➔ Accuracy còn ý nghĩa?\n\n" },
     { text: "• Câu 4 (thảo luận): ", options: { bold: true } },
-    { text: "Hệ số p < 0,05 trên 1,3 triệu dòng có tự động nghĩa là biến đó quan trọng thực tiễn?" }
+    { text: "p < 0,05 trên 1,3 triệu dòng có nghĩa là biến đó quan trọng thực tiễn?" }
   ],
   {
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -402,7 +399,7 @@ addText(
 addText(
   slide52Content,
   [
-    { text: "🎯 Gợi ý Giảng viên & Điểm chốt:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🎯 Gợi ý Giảng viên & Điểm chốt:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Bài học từ Câu 3:\n", options: { bold: true } },
     { text: "  Với dữ liệu mất cân bằng nghiêm trọng, Accuracy vô nghĩa ➔ Phải nhìn Precision/Recall/F1.\n\n" },
     { text: "• Bài học từ Câu 4 (Điểm nhấn 6.2.1):\n", options: { bold: true } },
@@ -412,9 +409,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.orange, width: 1 },
@@ -427,19 +424,19 @@ addText(
 
 addText(
   slide52Content,
-  "💡 Điểm nhấn tư duy: Ý nghĩa Thống kê (p < 0,05) KHÔNG đồng nghĩa với Ý nghĩa Thực tiễn trong Dữ liệu lớn!",
+  "💡 Điểm nhấn: ý nghĩa thống kê không đồng nghĩa ý nghĩa thực tiễn.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -459,7 +456,7 @@ slide53Content.addText("TÓM TẮT 6.2.1: KPDL THỐNG KÊ", { placeholder: "tit
 addText(
   slide53Content,
   [
-    { text: "📌 Tổng kết Nội dung Mục 6.2.1:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "📌 Tổng kết Nội dung Mục 6.2.1:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Quan hệ Thống kê & KPDL: ", options: { bold: true } },
     { text: "Bổ trợ lẫn nhau (Confirmatory vs Exploratory).\n\n" },
     { text: "• Kho vũ khí Thống kê: ", options: { bold: true } },
@@ -471,9 +468,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -486,7 +483,7 @@ addText(
 addText(
   slide53Content,
   [
-    { text: "🚀 Tiêu chí Lựa chọn & Chuyển giao 6.2.2:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🚀 Tiêu chí Lựa chọn & Chuyển giao 6.2.2:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Chọn Thống kê khi: ", options: { bold: true } },
     { text: "Cần giải trình pháp lý, suy diễn mô hình chặt chẽ, dữ liệu vừa phải.\n\n" },
     { text: "• Tiếp theo — Mục 6.2.2:\n", options: { bold: true, color: DUE_COLORS.orange } },
@@ -496,9 +493,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -514,16 +511,16 @@ addText(
   "💡 Bước tiếp theo: Chuyển sang 6.2.2 — Khám phá 5 quan điểm lý thuyết nền tảng của Khai phá dữ liệu.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }

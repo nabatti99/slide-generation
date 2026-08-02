@@ -1,5 +1,5 @@
 import { SlideGenerator } from "../../../slide-generator.ts";
-import { addText, DUE_COLORS } from "../../../template/due-template.ts";
+import { addSectionText, addTable, addText, DUE_COLORS } from "../../../template/due-template.ts";
 import { cmToInch } from "../../../utils.ts";
 
 const pptx = SlideGenerator.pptx;
@@ -9,13 +9,10 @@ const pptx = SlideGenerator.pptx;
 // ----------------------------------------------------
 const slide10Section = pptx.addSlide({ masterName: "SECTION" });
 slide10Section.addText("CHƯƠNG 6 – CÁC HƯỚNG NGHIÊN CỨU TRONG KPDL", { placeholder: "footer" });
-slide10Section.addText("6.1.1. KHAI PHÁ DỮ LIỆU CHUỖI", { placeholder: "title" });
-slide10Section.addText("Giải quyết Nguồn 1 của tình huống mở đầu: dự báo VN-Index", { placeholder: "content" });
-slide10Section.addText(
-  "\"Trong dữ liệu chuỗi, thông tin nằm ở GIÁ TRỊ và THỨ TỰ xuất hiện.\"\n\n" +
-  "Chuỗi thời gian  |  Tìm tương tự & Motif  |  Mẫu tuần tự  |  Phân loại chuỗi",
-  { placeholder: "subContent" }
-);
+addSectionText(slide10Section, "title", "6.1.1. KHAI PHÁ DỮ LIỆU CHUỖI");
+addSectionText(slide10Section, "content", "Giải quyết Nguồn 1 của tình huống mở đầu: dự báo VN-Index");
+addSectionText(slide10Section, "subContent", "\"Trong dữ liệu chuỗi, thông tin nằm ở GIÁ TRỊ và THỨ TỰ xuất hiện.\"\n\n" +
+  "Chuỗi thời gian  |  Tìm tương tự & Motif  |  Mẫu tuần tự  |  Phân loại chuỗi");
 
 // ----------------------------------------------------
 // Slide 11: CONTENT (DỮ LIỆU CHUỖI & BA LOẠI CHUỖI)
@@ -27,7 +24,7 @@ slide11Content.addText("DỮ LIỆU CHUỖI & BA LOẠI CHUỖI", { placeholder:
 addText(
   slide11Content,
   [
-    { text: "📊 1. Chuỗi thời gian (Time-series data):\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "📊 1. Chuỗi thời gian (Time-series data):\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Khái niệm: ", options: { bold: true } },
     { text: "Giá trị số ghi nhận tại các mốc thời gian cách đều nhau.\n\n" },
     { text: "• Ví dụ kinh tế: ", options: { bold: true } },
@@ -39,9 +36,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -54,7 +51,7 @@ addText(
 addText(
   slide11Content,
   [
-    { text: "🔣 2. Chuỗi ký hiệu & 🧬 3. Chuỗi sinh học:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🔣 2. Chuỗi ký hiệu & 🧬 3. Chuỗi sinh học:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Chuỗi ký hiệu (Symbolic sequence):\n", options: { bold: true } },
     { text: "  - Dãy sự kiện định danh, mốc thời gian không nhất thiết cách đều.\n  - Ví dụ: Chuỗi mua sắm {Laptop ➔ Chuột ➔ Balo}, luồng clickstream web.\n\n" },
     { text: "• Chuỗi sinh học (Biological sequence):\n", options: { bold: true } },
@@ -64,9 +61,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.orange, width: 1 },
@@ -82,16 +79,16 @@ addText(
   "💡 Khái niệm then chốt: Phân biệt dựa trên dạng giá trị (số vs ký hiệu), tính cách đều và ý nghĩa của khoảng trống (gap).",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -111,7 +108,7 @@ slide12Content.addText("BỐN THÀNH PHẦN CHUỖI THỜI GIAN", { placeholder:
 addText(
   slide12Content,
   [
-    { text: "🧩 4 Thành phần rã chuỗi thời gian:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🧩 4 Thành phần rã chuỗi thời gian:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Trend (T): ", options: { bold: true } },
     { text: "Xu hướng dài hạn — VN-Index tăng trưởng theo chu kỳ 10 năm.\n\n" },
     { text: "• Cyclic (C): ", options: { bold: true } },
@@ -125,9 +122,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -140,7 +137,7 @@ addText(
 addText(
   slide12Content,
   [
-    { text: "📐 Mô hình kết hợp & Thảo luận:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "📐 Mô hình kết hợp & Thảo luận:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Mô hình phân rã:\n", options: { bold: true } },
     { text: "  - Dạng cộng: Y_t = T_t + C_t + S_t + R_t\n  - Dạng nhân: Y_t = T_t × C_t × S_t × R_t\n\n" },
     { text: "❓ Câu hỏi thảo luận:\n", options: { bold: true, color: DUE_COLORS.orange } },
@@ -150,9 +147,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -168,16 +165,16 @@ addText(
   "💡 Ứng dụng nghiệp vụ: Tách được thành phần thời vụ (Seasonal) là điều kiện để so sánh 'like-for-like' trong phân tích kinh doanh.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -197,7 +194,7 @@ slide13Content.addText("BÀI TOÁN 1: DỰ BÁO CHUỖI VỚI ARIMA", { placehol
 addText(
   slide13Content,
   [
-    { text: "⚙️ Cấu trúc Mô hình ARIMA(p, d, q):\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "⚙️ Cấu trúc Mô hình ARIMA(p, d, q):\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• AR(p) - AutoRegressive: ", options: { bold: true } },
     { text: "Giá trị hiện tại phụ thuộc p giá trị quá khứ.\n\n" },
     { text: "• I(d) - Integrated: ", options: { bold: true } },
@@ -209,9 +206,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -224,7 +221,7 @@ addText(
 addText(
   slide13Content,
   [
-    { text: "🔄 Quy trình Box-Jenkins 4 bước & KPDL:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🔄 Quy trình Box-Jenkins 4 bước & KPDL:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "1. Nhận dạng: ", options: { bold: true } },
     { text: "Kiểm định tính dừng (ADF test); xem ACF/PACF để chọn p, q.\n\n" },
     { text: "2. Ước lượng: ", options: { bold: true } },
@@ -232,16 +229,15 @@ addText(
     { text: "3. Kiểm định: ", options: { bold: true } },
     { text: "Phần dư là nhiễu trắng (Ljung-Box); so sánh AIC/BIC.\n\n" },
     { text: "4. Dự báo: ", options: { bold: true } },
-    { text: "Dự báo kèm khoảng tin cậy; tính RMSE, MAPE.\n\n" },
-    { text: "🤖 Góc nhìn KPDL: Tự động hóa auto-ARIMA trên hàng nghìn chuỗi song song." }
+    { text: "Kèm khoảng tin cậy; tính RMSE, MAPE." }
   ],
   {
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.orange, width: 1 },
@@ -257,16 +253,16 @@ addText(
   "💡 Khác biệt với Thống kê truyền thống: Khai phá dữ liệu tự động hóa chọn mô hình cho hàng nghìn mã hàng/cổ phiếu cùng lúc.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -286,7 +282,7 @@ slide14Content.addText("DEMO 1: DỰ BÁO VN-INDEX (ARIMA)", { placeholder: "tit
 addText(
   slide14Content,
   [
-    { text: "💻 Các bước thực hành Python:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "💻 Các bước thực hành Python:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Bước 1: ", options: { bold: true } },
     { text: "Tải giá đóng cửa VN-Index bằng library `vnstock`; vẽ đường trung bình động 10 ngày.\n\n" },
     { text: "• Bước 2: ", options: { bold: true } },
@@ -300,9 +296,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -315,7 +311,7 @@ addText(
 addText(
   slide14Content,
   [
-    { text: "❓ Thảo luận giới hạn & Gợi ý mở rộng:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "❓ Thảo luận giới hạn & Gợi ý mở rộng:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "“Sai số dự báo lớn nhất rơi vào giai đoạn nào? Điều đó nói gì về giới hạn của ARIMA với chứng khoán?”\n\n", options: { bold: true, color: DUE_COLORS.orange } },
     { text: "• Nhận xét: ", options: { bold: true } },
     { text: "Sai số bùng nổ ở giai đoạn biến động mạnh/sốc tin tức.\n\n" },
@@ -326,9 +322,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -344,16 +340,16 @@ addText(
   "💡 Bài học quản trị rủi ro: Không bao giờ sử dụng dự báo điểm đơn lẻ, luôn đi kèm khoảng tin cậy 95%.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -373,7 +369,7 @@ slide15Content.addText("BÀI TOÁN 2: TƯƠNG TỰ & MOTIF CHUỖI", { placehold
 addText(
   slide15Content,
   [
-    { text: "🔍 Tìm kiếm tương tự (Similarity Search):\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🔍 Tìm kiếm tương tự (Similarity Search):\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Mục tiêu: ", options: { bold: true } },
     { text: "Tìm các chuỗi (con) 'gần giống' chuỗi truy vấn (khác CSDL vốn đòi hỏi khớp chính xác).\n\n" },
     { text: "• Phân loại:\n", options: { bold: true } },
@@ -385,9 +381,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -400,7 +396,7 @@ addText(
 addText(
   slide15Content,
   [
-    { text: "🧩 Phát hiện Motif & Ứng dụng Kinh tế:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🧩 Phát hiện Motif & Ứng dụng Kinh tế:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Motif: ", options: { bold: true } },
     { text: "Mẫu hình lặp lại thường xuyên trong một chuỗi — đóng vai trò 'từ vựng' đặc trưng.\n\n" },
     { text: "• Ứng dụng thực tế:\n", options: { bold: true } },
@@ -410,9 +406,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.orange, width: 1 },
@@ -425,19 +421,19 @@ addText(
 
 addText(
   slide15Content,
-  "💡 Ý tưởng cốt lõi: Nén chuỗi dài thành ít con số đại diện rồi so sánh tìm mẫu hình lặp lại (Motif).",
+  "💡 Nén chuỗi dài thành ít con số đại diện rồi so sánh để tìm motif.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -457,7 +453,7 @@ slide16Content.addText("BÀI TOÁN 3: KHAI PHÁ MẪU TUẦN TỰ", { placeholde
 addText(
   slide16Content,
   [
-    { text: "🔗 Mẫu tuần tự vs Luật kết hợp Ch.5:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🔗 Mẫu tuần tự vs Luật kết hợp Ch.5:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Định nghĩa: ", options: { bold: true } },
     { text: "Mẫu tuần tự = Luật kết hợp + Yếu tố THỨ TỰ thời gian.\n\n" },
     { text: "• So sánh ví dụ:\n", options: { bold: true } },
@@ -467,9 +463,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -482,7 +478,7 @@ addText(
 addText(
   slide16Content,
   [
-    { text: "🛠️ Thuật toán, Biến thể & Thảo luận:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🛠️ Thuật toán, Biến thể & Thảo luận:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Giải thuật tiêu biểu: ", options: { bold: true } },
     { text: "GSP, PrefixSpan (dựa trên minsup).\n\n" },
     { text: "• Ràng buộc thực tế: ", options: { bold: true } },
@@ -494,9 +490,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -512,16 +508,16 @@ addText(
   "💡 Giá trị nghiệp vụ: Mẫu tuần tự nắm bắt quan hệ TRƯỚC - SAU, tối ưu hóa gợi ý hành vi tiếp theo (Next-Best-Offer).",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -541,7 +537,7 @@ slide17Content.addText("BÀI TOÁN 4: PHÂN LOẠI CHUỖI (DTW)", { placeholder
 addText(
   slide17Content,
   [
-    { text: "🎯 3 Hướng tiếp cận Phân loại Chuỗi:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🎯 3 Hướng tiếp cận Phân loại Chuỗi:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Hướng 1 — Feature-based: ", options: { bold: true } },
     { text: "Trích xuất đặc trưng số (trung bình, độ lệch chuẩn, xu hướng, k-grams) ➔ Dùng lại bộ phân lớp Ch.4.\n\n" },
     { text: "• Hướng 2 — Distance-based: ", options: { bold: true } },
@@ -553,9 +549,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -568,7 +564,7 @@ addText(
 addText(
   slide17Content,
   [
-    { text: "💡 Ví dụ Ứng dụng Nghiệp vụ:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "💡 Ví dụ Ứng dụng Nghiệp vụ:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Phân loại khách hàng: ", options: { bold: true } },
     { text: "Dự đoán nhãn 'Rời bỏ (Churn)' vs 'Trung thành' dựa trên chuỗi giao dịch.\n\n" },
     { text: "• Điểm khác biệt lớn: ", options: { bold: true } },
@@ -578,9 +574,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -596,16 +592,16 @@ addText(
   "💡 Nguyên tắc vàng: Cả 3 hướng đều quy về việc đưa chuỗi về dạng tính toán/so sánh được rồi tái sử dụng công cụ đã học.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -633,8 +629,8 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
@@ -656,8 +652,8 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
@@ -678,10 +674,10 @@ addText(
   ],
   {
     x: cmToInch(0.8),
-    y: cmToInch(5.8),
+    y: 0, // trôi dưới thẻ cùng cột
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
@@ -702,10 +698,10 @@ addText(
   ],
   {
     x: cmToInch(13.1),
-    y: cmToInch(5.8),
+    y: 0, // trôi dưới thẻ cùng cột
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
@@ -722,16 +718,16 @@ addText(
   "💡 Thực tiễn Việt Nam: Dữ liệu chuỗi đang được ứng dụng rộng rãi từ tài chính đến e-commerce.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -751,23 +747,25 @@ slide19Content.addText("BÀI TẬP 6.1.1: CHUỖI GIAO DỊCH THẺ", { placehol
 addText(
   slide19Content,
   [
-    { text: "📝 Đề bài Thực hành Python (Credit Card Dataset):\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "📝 Đề bài thực hành Python:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Câu 1: ", options: { bold: true } },
-    { text: "Resample tổng số giao dịch & tổng `amt` theo NGÀY. Vẽ đồ thị chuỗi thời gian 2019–2020.\n\n" },
+    { text: "Resample `amt` theo ngày; vẽ chuỗi 2019–2020.\n\n" },
     { text: "• Câu 2: ", options: { bold: true } },
-    { text: "Phân rã chuỗi tổng chi tiêu ngày thành Trend/Seasonal/Random (`seasonal_decompose`).\n\n" },
+    { text: "Phân rã Trend/Seasonal/Random.\n\n" },
     { text: "• Câu 3: ", options: { bold: true } },
-    { text: "Kiểm định ADF, sai phân, ước lượng ARIMA & so sánh RMSE với dự báo naive (hôm qua = hôm nay).\n\n" },
+    { text: "ADF, sai phân, ARIMA; so RMSE với dự báo naive.\n\n" },
     { text: "• Câu 4: ", options: { bold: true } },
-    { text: "Chuỗi chi tiêu cá nhân vs toàn hệ thống khác gì về độ nhiễu?" }
+    { text: "Theo `cc_num`: `amt_z_card`, `days_since_prev_txn` ➔ `features_seq.csv`.\n\n" },
+    { text: "• Câu 5: ", options: { bold: true } },
+    { text: "Vì sao chuỗi một chủ thẻ nhiễu hơn toàn hệ thống?" }
   ],
   {
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -780,19 +778,19 @@ addText(
 addText(
   slide19Content,
   [
-    { text: "🎯 Gợi ý Giảng viên & Điểm chốt:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🎯 Gợi ý Giảng viên & Điểm chốt:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Bài học từ Câu 3:\n", options: { bold: true } },
-    { text: "  - Mô hình phức tạp bắt buộc phải vượt qua Benchmark Naive tối thiểu mới có giá trị thực tế.\n\n" },
-    { text: "• Bài học từ Câu 4:\n", options: { bold: true } },
-    { text: "  - Chuỗi 1 cá nhân cực kỳ nhiễu ➔ Cần gộp nhóm hoặc trích xuất đặc trưng hành vi.\n  - Cầu nối sang bài toán Phát hiện gian lận (Fraud Detection) ở 6.4.3." }
+    { text: "  - Mô hình phức tạp phải vượt benchmark naive mới có giá trị.\n\n" },
+    { text: "• Bài học từ Câu 4–5:\n", options: { bold: true } },
+    { text: "  - Mắt xích đầu của chuỗi bài tập: mỗi bài của 6.1 tạo một nhóm đặc trưng, đến 6.4.3 chỉ cần ghép lại.\n  - Nhắc lớp lưu file để khỏi làm lại." }
   ],
   {
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.orange, width: 1 },
@@ -805,19 +803,19 @@ addText(
 
 addText(
   slide19Content,
-  "💡 Luyện tập: Kết hợp kỹ thuật phân rã chuỗi thời gian và ARIMA trên dữ liệu thẻ tín dụng thực tế.",
+  "💡 Luyện tập: phân rã chuỗi và ARIMA trên dữ liệu thẻ tín dụng.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -837,7 +835,7 @@ slide20Content.addText("TÓM TẮT 6.1.1: KHAI PHÁ CHUỖI", { placeholder: "ti
 addText(
   slide20Content,
   [
-    { text: "📌 Tổng kết Nội dung Mục 6.1.1:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "📌 Tổng kết Nội dung Mục 6.1.1:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• 3 Loại chuỗi: ", options: { bold: true } },
     { text: "Thời gian (số, cách đều), Ký hiệu (sự kiện), Sinh học.\n\n" },
     { text: "• 4 Bài toán cốt lõi:\n", options: { bold: true } },
@@ -849,9 +847,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -864,7 +862,7 @@ addText(
 addText(
   slide20Content,
   [
-    { text: "🚀 Chuyển giao tiếp theo — Mục 6.1.2:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🚀 Chuyển giao tiếp theo — Mục 6.1.2:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Nguyên tắc vàng lặp lại: ", options: { bold: true } },
     { text: "Biến chuỗi ➔ Đặc trưng số ➔ Tái dùng kỹ thuật Ch.3–5.\n\n" },
     { text: "• Bài học tiếp theo (6.1.2):\n", options: { bold: true } },
@@ -874,9 +872,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -889,19 +887,19 @@ addText(
 
 addText(
   slide20Content,
-  "💡 Bước tiếp theo: Chuyển từ dữ liệu chuỗi (thứ tự) sang dữ liệu đồ thị & mạng (mối quan hệ liên kết).",
+  "💡 Tiếp theo: từ dữ liệu chuỗi (thứ tự) sang đồ thị & mạng (quan hệ).",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }

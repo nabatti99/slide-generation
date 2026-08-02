@@ -1,5 +1,5 @@
 import { SlideGenerator } from "../../../slide-generator.ts";
-import { addText, DUE_COLORS } from "../../../template/due-template.ts";
+import { addSectionText, addTable, addText, DUE_COLORS } from "../../../template/due-template.ts";
 import { cmToInch } from "../../../utils.ts";
 
 const pptx = SlideGenerator.pptx;
@@ -9,13 +9,10 @@ const pptx = SlideGenerator.pptx;
 // ----------------------------------------------------
 const slide32Section = pptx.addSlide({ masterName: "SECTION" });
 slide32Section.addText("CHƯƠNG 6 – CÁC HƯỚNG NGHIÊN CỨU TRONG KPDL", { placeholder: "footer" });
-slide32Section.addText("6.1.3. KHAI PHÁ VĂN BẢN & CÁC LOẠI DỮ LIỆU KHÁC", { placeholder: "title" });
-slide32Section.addText("Giải quyết Nguồn 3 của tình huống mở đầu: đo tâm lý thị trường từ bình luận", { placeholder: "content" });
-slide32Section.addText(
-  "\"Khoảng 80% dữ liệu của doanh nghiệp là phi cấu trúc — và phần lớn chưa từng được khai thác.\"\n\n" +
-  "Tiền xử lý Tiếng Việt  |  TF-IDF & Sentiment Analysis  |  Dữ liệu Đa phương tiện & Không gian",
-  { placeholder: "subContent" }
-);
+addSectionText(slide32Section, "title", "6.1.3. KHAI PHÁ VĂN BẢN & CÁC LOẠI DỮ LIỆU KHÁC");
+addSectionText(slide32Section, "content", "Giải quyết Nguồn 3 của tình huống mở đầu: đo tâm lý thị trường từ bình luận");
+addSectionText(slide32Section, "subContent", "\"Khoảng 80% dữ liệu của doanh nghiệp là phi cấu trúc — và phần lớn chưa từng được khai thác.\"\n\n" +
+  "Tiền xử lý Tiếng Việt  |  TF-IDF & Sentiment Analysis  |  Dữ liệu Đa phương tiện & Không gian");
 
 // ----------------------------------------------------
 // Slide 33: CONTENT (KHAI PHÁ VĂN BẢN & BÀI TOÁN CHÍNH)
@@ -27,7 +24,7 @@ slide33Content.addText("KHAI PHÁ VĂN BẢN & BÀI TOÁN CHÍNH", { placeholder
 addText(
   slide33Content,
   [
-    { text: "📄 Bản chất Dữ liệu Văn bản:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "📄 Bản chất Dữ liệu Văn bản:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Phi cấu trúc: ", options: { bold: true } },
     { text: "Không có dòng - cột có sẵn; máy tính không 'đọc hiểu' trực tiếp được.\n\n" },
     { text: "• Nguyên tắc vàng lần thứ ba: ", options: { bold: true, color: DUE_COLORS.orange } },
@@ -39,9 +36,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -54,7 +51,7 @@ addText(
 addText(
   slide33Content,
   [
-    { text: "🎯 4 Bài toán Khai phá Văn bản trong Kinh doanh:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🎯 4 Bài toán Khai phá Văn bản trong Kinh doanh:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Phân loại văn bản: ", options: { bold: true } },
     { text: "Gán nhãn tự động (spam/ham, phân loại khiếu nại).\n\n" },
     { text: "• Phân tích cảm xúc (Sentiment): ", options: { bold: true } },
@@ -68,9 +65,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.orange, width: 1 },
@@ -83,19 +80,19 @@ addText(
 
 addText(
   slide33Content,
-  "💡 Khai phá văn bản (Text Mining): Chuyển hóa kho tài liệu phi cấu trúc thành tri thức định lượng có thể hành động.",
+  "💡 Text mining: biến kho tài liệu phi cấu trúc thành tri thức định lượng.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -115,7 +112,7 @@ slide34Content.addText("TIỀN XỬ LÝ VĂN BẢN TIẾNG VIỆT", { placeholde
 addText(
   slide34Content,
   [
-    { text: "🛠️ Quy trình Tiền xử lý Văn bản:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🛠️ Quy trình Tiền xử lý Văn bản:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Tách từ (Tokenization): ", options: { bold: true } },
     { text: "Cắt văn bản thành các đơn vị từ.\n\n" },
     { text: "• Chuẩn hóa: ", options: { bold: true } },
@@ -129,9 +126,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -144,7 +141,7 @@ addText(
 addText(
   slide34Content,
   [
-    { text: "🇻🇳 Thách thức riêng của Tiếng Việt:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🇻🇳 Thách thức riêng của Tiếng Việt:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Tách từ phức tạp: ", options: { bold: true } },
     { text: "Tiếng Việt từ ghép không có dấu phân cách ('học sinh' ≠ 'học' + 'sinh'). Cần thư viện `underthesea`, `VnCoreNLP`.\n\n" },
     { text: "• Ngôn ngữ Mạng xã hội: ", options: { bold: true } },
@@ -156,9 +153,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -174,16 +171,16 @@ addText(
   "💡 Lưu ý quan trọng: Với bài toán Sentiment Analysis, các từ phủ định ('không', 'chưa', 'chẳng') BẮT BUỘC phải giữ lại!",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -203,7 +200,7 @@ slide35Content.addText("BIỂU DIỄN VĂN BẢN (BoW & TF-IDF)", { placeholder:
 addText(
   slide35Content,
   [
-    { text: "📊 Bag-of-Words vs Trọng số TF-IDF:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "📊 Bag-of-Words vs Trọng số TF-IDF:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Bag-of-Words (BoW): ", options: { bold: true } },
     { text: "Đếm tần suất xuất hiện của từ. Hạn chế: từ xuất hiện nhiều chưa chắc quan trọng ('sản phẩm' có trong mọi review).\n\n" },
     { text: "• TF-IDF (Term Frequency - Inverse Document Frequency):\n", options: { bold: true } },
@@ -213,9 +210,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -228,7 +225,7 @@ addText(
 addText(
   slide35Content,
   [
-    { text: "⚡ Tái sử dụng Kỹ thuật Ch.3–5 & Giới hạn:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "⚡ Tái sử dụng Kỹ thuật Ch.3–5 & Giới hạn:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Sau khi có Ma trận TF-IDF:\n", options: { bold: true } },
     { text: "  Mọi kỹ thuật Ch.3–5 (Phân lớp, Phân cụm) dùng được ngay mà không cần chỉnh sửa!\n\n" },
     { text: "• Hạn chế của TF-IDF:\n", options: { bold: true } },
@@ -240,9 +237,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.orange, width: 1 },
@@ -258,16 +255,16 @@ addText(
   "💡 Trực giác TF-IDF: Từ xuất hiện nhiều trong 1 bài nhưng hiếm trong toàn bộ kho tài liệu sẽ có trọng số cao nhất.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -287,21 +284,21 @@ slide36Content.addText("PHÂN TÍCH CẢM XÚC (SENTIMENT ANALYSIS)", { placehol
 addText(
   slide36Content,
   [
-    { text: "📈 3 Cấp độ Tiếp cận Sentiment Analysis:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "📈 3 Cấp độ Tiếp cận Sentiment Analysis:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• 1. Lexicon-based: ", options: { bold: true } },
     { text: "Đếm từ theo từ điển cảm xúc — Nhanh, không cần nhãn nhưng kém với mỉa mai.\n\n" },
     { text: "• 2. Học máy cổ điển: ", options: { bold: true } },
     { text: "TF-IDF + Naive Bayes / Logistic / SVM (Tái dùng Ch.4) — Chính xác hơn.\n\n" },
     { text: "• 3. Học sâu (PhoBERT): ", options: { bold: true } },
-    { text: "Hiểu ngữ cảnh tiếng Việt tốt nhất (~91% accuracy trên ~935.000 review TMĐT)." }
+    { text: "Hiểu ngữ cảnh tiếng Việt tốt nhất — đắt về dữ liệu và tính toán (dẫn chứng ở slide ví dụ VN)." }
   ],
   {
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -314,7 +311,7 @@ addText(
 addText(
   slide36Content,
   [
-    { text: "🎯 Ứng dụng Nguồn 3 & Thảo luận Nghiên cứu:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🎯 Ứng dụng Nguồn 3 & Thảo luận Nghiên cứu:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Đo Chỉ số Tâm lý Thị trường: ", options: { bold: true } },
     { text: "Biến tâm lý nhà đầu tư từ diễn đàn/tin tức thành biến số dự báo VN-Index (Nối với 6.1.1).\n\n" },
     { text: "❓ Câu hỏi thảo luận:\n", options: { bold: true, color: DUE_COLORS.orange } },
@@ -324,9 +321,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -342,16 +339,16 @@ addText(
   "💡 Ý tưởng thiết kế: Xây chuỗi chỉ số sentiment theo ngày và kiểm định nhân quả Granger với chuỗi lợi suất VN-Index.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -371,7 +368,7 @@ slide37Content.addText("DEMO 3: PHÂN TÍCH CẢM XÚC SHOPEE", { placeholder: "
 addText(
   slide37Content,
   [
-    { text: "💻 Quy trình Thực hành Python:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "💻 Quy trình Thực hành Python:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Bước 1: ", options: { bold: true } },
     { text: "Nạp tập review Shopee tiếng Việt có nhãn; xem phân bố nhãn.\n\n" },
     { text: "• Bước 2: ", options: { bold: true } },
@@ -385,9 +382,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -400,7 +397,7 @@ addText(
 addText(
   slide37Content,
   [
-    { text: "❓ Thảo luận Lỗi Mô hình & Đánh giá:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "❓ Thảo luận Lỗi Mô hình & Đánh giá:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "“Mô hình đoán sai những câu nào trong các câu lớp tự đặt? Câu sai có đặc điểm gì chung?”\n\n", options: { bold: true, color: DUE_COLORS.orange } },
     { text: "• Nhận xét lỗi:\n", options: { bold: true } },
     { text: "  - Thường rơi vào câu chứa mỉa mai, phủ định kép hoặc từ chưa từng xuất hiện.\n  - Minh họa lý do cần PhoBERT/Học sâu ở 6.2.4." }
@@ -409,9 +406,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -424,19 +421,19 @@ addText(
 
 addText(
   slide37Content,
-  "💡 Kết luận nghiệp vụ: Với bài toán kinh doanh thông thường, mô hình cổ điển (TF-IDF + Logistic) + tiền xử lý tốt đã đủ dùng và dễ giải thích.",
+  "💡 Với bài toán thông thường, TF-IDF + Logistic đã đủ dùng và dễ giải thích.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -456,7 +453,7 @@ slide38Content.addText("DỮ LIỆU ĐA PHƯƠNG TIỆN & KHÔNG GIAN", { placeh
 addText(
   slide38Content,
   [
-    { text: "📸 Dữ liệu Đa phương tiện (Multimedia):\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "📸 Dữ liệu Đa phương tiện (Multimedia):\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Định dạng: ", options: { bold: true } },
     { text: "Hình ảnh, âm thanh, video.\n\n" },
     { text: "• Nguyên tắc: ", options: { bold: true } },
@@ -468,9 +465,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -483,7 +480,7 @@ addText(
 addText(
   slide38Content,
   [
-    { text: "🗺️ Dữ liệu Không gian (Spatial Data):\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🗺️ Dữ liệu Không gian (Spatial Data):\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Định dạng: ", options: { bold: true } },
     { text: "Mọi bản ghi có tọa độ (lat, long) vị trí.\n\n" },
     { text: "• Bài toán: ", options: { bold: true } },
@@ -495,9 +492,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.orange, width: 1 },
@@ -513,16 +510,16 @@ addText(
   "💡 Nhất quán nguyên tắc vàng: Dữ liệu ảnh hay tọa độ đều được quy về vector số để tái dùng mô hình Ch.3–5.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -550,8 +547,8 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
@@ -573,8 +570,8 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
@@ -595,10 +592,10 @@ addText(
   ],
   {
     x: cmToInch(0.8),
-    y: cmToInch(5.8),
+    y: 0, // trôi dưới thẻ cùng cột
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
@@ -619,10 +616,10 @@ addText(
   ],
   {
     x: cmToInch(13.1),
-    y: cmToInch(5.8),
+    y: 0, // trôi dưới thẻ cùng cột
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
@@ -639,16 +636,16 @@ addText(
   "💡 Thực tiễn Việt Nam: Dữ liệu văn bản và không gian đóng vai trò chiến lược trong các quyết định e-commerce và bán lẻ.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -668,11 +665,11 @@ slide40Content.addText("BÀI TẬP 6.1.3: KHÔNG GIAN & VĂN BẢN", { placehold
 addText(
   slide40Content,
   [
-    { text: "📝 Đề bài Thực hành Python (Credit Card Dataset):\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "📝 Đề bài thực hành Python:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Câu 1 (Không gian): ", options: { bold: true } },
-    { text: "Tính khoảng cách Haversine từ nhà chủ thẻ (`lat`, `long`) đến cửa hàng (`merch_lat`, `merch_long`).\n\n" },
+    { text: "Tính `dist_km` (Haversine) từ nhà chủ thẻ đến cửa hàng ➔ `features_spatial.csv`.\n\n" },
     { text: "• Câu 2: ", options: { bold: true } },
-    { text: "Vẽ boxplot khoảng cách nhóm `is_fraud = 0` vs `is_fraud = 1`. Gian lận có xa nhà hơn không?\n\n" },
+    { text: "Boxplot khoảng cách `is_fraud = 0` vs `= 1`: gian lận có xa nhà hơn?\n\n" },
     { text: "• Câu 3 (Văn bản): ", options: { bold: true } },
     { text: "Tạo TF-IDF cột `job` (chức danh); phân cụm K-means 3 nhóm nghề chính.\n\n" },
     { text: "• Câu 4: ", options: { bold: true } },
@@ -682,9 +679,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -697,7 +694,7 @@ addText(
 addText(
   slide40Content,
   [
-    { text: "🎯 Gợi ý Giảng viên & Đạo đức KPDL:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🎯 Gợi ý Giảng viên & Đạo đức KPDL:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Kết quả Câu 2:\n", options: { bold: true } },
     { text: "  Giao dịch gian lận có khoảng cách xa nhà lớn hơn rõ rệt ➔ Đặc trưng mạnh cho mô hình Fraud.\n\n" },
     { text: "• Thảo luận Đạo đức KPDL (Câu 4):\n", options: { bold: true } },
@@ -707,9 +704,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.orange, width: 1 },
@@ -722,19 +719,19 @@ addText(
 
 addText(
   slide40Content,
-  "💡 Luyện tập: Trích xuất khoảng cách Haversine và ma trận TF-IDF nghề nghiệp làm biến số dự báo gian lận.",
+  "💡 Luyện tập: khoảng cách Haversine và TF-IDF nghề nghiệp làm biến dự báo.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -754,7 +751,7 @@ slide41Content.addText("TÓM TẮT 6.1.3: KHAI PHÁ VĂN BẢN", { placeholder: 
 addText(
   slide41Content,
   [
-    { text: "📌 Tổng kết Nội dung Mục 6.1.3:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "📌 Tổng kết Nội dung Mục 6.1.3:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Quy trình chuẩn: ", options: { bold: true } },
     { text: "Văn bản thô ➔ Tiền xử lý (tách từ `underthesea`) ➔ TF-IDF ➔ Mô hình Ch.3–5.\n\n" },
     { text: "• Bài toán chủ lực: ", options: { bold: true } },
@@ -766,9 +763,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -781,7 +778,7 @@ addText(
 addText(
   slide41Content,
   [
-    { text: "🚀 Điểm mấu chốt Thực hành:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🚀 Điểm mấu chốt Thực hành:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Tiền xử lý quyết định thành bại:\n", options: { bold: true } },
     { text: "  Giữ từ phủ định, chuẩn hóa teencode tiếng Việt.\n\n" },
     { text: "• Bộ công cụ Python:\n", options: { bold: true } },
@@ -791,9 +788,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -809,16 +806,16 @@ addText(
   "💡 Nhất quán toàn mục 6.1: Biến biến dữ liệu phức tạp thành biểu diễn số rồi tái sử dụng kỹ thuật đã học ở Ch.3–5.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -838,7 +835,7 @@ slide42Content.addText("KHÉP LẠI 6.1: LỜI GIẢI 3 NGUỒN DỮ LIỆU", { 
 addText(
   slide42Content,
   [
-    { text: "✅ Tổng kết Lời giải 3 Nguồn dữ liệu:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "✅ Tổng kết Lời giải 3 Nguồn dữ liệu:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Nguồn 1 (Chuỗi giá VN-Index) ➔ 6.1.1:\n", options: { bold: true } },
     { text: "  ARIMA/Box-Jenkins, motif ➔ Dự báo xu hướng ngắn hạn kèm khoảng tin cậy.\n\n" },
     { text: "• Nguồn 2 (Mạng sở hữu chéo) ➔ 6.1.2:\n", options: { bold: true } },
@@ -850,9 +847,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -865,7 +862,7 @@ addText(
 addText(
   slide42Content,
   [
-    { text: "🌟 Bức tranh Lớn & Cầu nối 6.2:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🌟 Bức tranh Lớn & Cầu nối 6.2:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Nguyên tắc vàng xuyên suốt:\n", options: { bold: true } },
     { text: "  Biến dữ liệu phức tạp về dạng số ➔ Tái sử dụng kỹ thuật đã học.\n\n" },
     { text: "• Bước sang Mục 6.2 — Hướng kỹ thuật:\n", options: { bold: true, color: DUE_COLORS.orange } },
@@ -875,9 +872,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -893,16 +890,16 @@ addText(
   "💡 Khép lại 6.1: Đã giải quyết trọn vẹn câu hỏi 'Khai phá CÁI GÌ?' đối với các loại dữ liệu phức tạp.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }

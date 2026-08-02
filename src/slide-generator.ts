@@ -1,5 +1,5 @@
 import PptxGenJS from "pptxgenjs";
-import { registerDueTemplates } from "./template/due-template.ts";
+import { flushLayout, registerDueTemplates } from "./template/due-template.ts";
 
 export class SlideGenerator {
     static pptx = new (PptxGenJS as any)() as PptxGenJS.default;
@@ -12,6 +12,10 @@ export class SlideGenerator {
     }
 
     static save(fileName: string) {
+        // Resolve the deferred layout first — box heights are only final once
+        // every box on a slide has been declared. No-op on repeat calls.
+        flushLayout();
+
         // Save/Export the presentation
         SlideGenerator.pptx
             .writeFile({ fileName: `output/${fileName}` })

@@ -1,5 +1,5 @@
 import { SlideGenerator } from "../../../slide-generator.ts";
-import { addText, DUE_COLORS } from "../../../template/due-template.ts";
+import { addSectionText, addTable, addText, DUE_COLORS } from "../../../template/due-template.ts";
 import { cmToInch } from "../../../utils.ts";
 
 const pptx = SlideGenerator.pptx;
@@ -9,13 +9,10 @@ const pptx = SlideGenerator.pptx;
 // ----------------------------------------------------
 const slide43Section = pptx.addSlide({ masterName: "SECTION" });
 slide43Section.addText("CHƯƠNG 6 – CÁC HƯỚNG NGHIÊN CỨU TRONG KPDL", { placeholder: "footer" });
-slide43Section.addText("6.2. HƯỚNG KỸ THUẬT", { placeholder: "title" });
-slide43Section.addText("Các phương pháp luận khai phá dữ liệu (Other Methodologies of Data Mining)", { placeholder: "content" });
-slide43Section.addText(
-  "\"Mục 6.1 trả lời khai phá CÁI GÌ? — Mục 6.2 trả lời khai phá BẰNG GÌ?\"\n\n" +
-  "Thống kê cổ điển  |  Nền tảng lý thuyết  |  Trực quan hóa  |  Học máy & Học sâu",
-  { placeholder: "subContent" }
-);
+addSectionText(slide43Section, "title", "6.2. HƯỚNG KỸ THUẬT");
+addSectionText(slide43Section, "content", "Các phương pháp luận khai phá dữ liệu (Other Methodologies of Data Mining)");
+addSectionText(slide43Section, "subContent", "\"Mục 6.1 trả lời khai phá CÁI GÌ? — Mục 6.2 trả lời khai phá BẰNG GÌ?\"\n\n" +
+  "Thống kê cổ điển  |  Nền tảng lý thuyết  |  Trực quan hóa  |  Học máy & Học sâu");
 
 // ----------------------------------------------------
 // Slide 44: CONTENT (HƯỚNG KỸ THUẬT VÀ MỤC TIÊU HỌC TẬP)
@@ -27,7 +24,7 @@ slide44Content.addText("HƯỚNG KỸ THUẬT VÀ MỤC TIÊU HỌC TẬP", { pl
 addText(
   slide44Content,
   [
-    { text: "🤝 Lĩnh vực Giao thoa Đa ngành:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🤝 Lĩnh vực Giao thoa Đa ngành:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Giao thoa 4 cộng đồng: ", options: { bold: true } },
     { text: "Thống kê ∩ Học máy ∩ Cơ sở dữ liệu ∩ Trực quan hóa.\n\n" },
     { text: "• Mỗi cộng đồng mang góc nhìn riêng: ", options: { bold: true } },
@@ -37,9 +34,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -52,7 +49,7 @@ addText(
 addText(
   slide44Content,
   [
-    { text: "💡 Hệ quả Thực tế & Lợi ích Kinh tế:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "💡 Hệ quả Thực tế & Lợi ích Kinh tế:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Hệ quả trong doanh nghiệp:\n", options: { bold: true } },
     { text: "  Cùng 1 bài toán, Nhà thống kê, Kỹ sư ML và Chuyên viên BI sẽ đề xuất 3 lời giải khác nhau.\n\n" },
     { text: "• Lợi ích với Nhà quản lý:\n", options: { bold: true } },
@@ -62,9 +59,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.orange, width: 1 },
@@ -80,16 +77,16 @@ addText(
   "💡 Mục tiêu: Giúp nhà quản lý chọn đúng trường phái kỹ thuật và đối thoại hiệu quả với từng đội ngũ chuyên gia.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -109,7 +106,7 @@ slide45Content.addText("CÂU HỎI: 3 CHUYÊN GIA, 1 BÀI TOÁN", { placeholder:
 addText(
   slide45Content,
   [
-    { text: "🔍 Bài toán Dự đoán Khách hàng Rời bỏ (Churn):\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🔍 Bài toán Dự đoán Khách hàng Rời bỏ (Churn):\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Nhà Thống kê: ", options: { bold: true } },
     { text: "Hồi quy Logistic, đọc Odds Ratio ➔ Ưu tiên suy diễn & giải thích.\n\n" },
     { text: "• Kỹ sư Học máy: ", options: { bold: true } },
@@ -121,9 +118,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -136,7 +133,7 @@ addText(
 addText(
   slide45Content,
   [
-    { text: "❓ Thảo luận Nghiệp vụ Ngân hàng:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "❓ Thảo luận Nghiệp vụ Ngân hàng:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "“Ngân hàng cần mô hình Chấm điểm tín dụng phải GIẢI TRÌNH ĐƯỢC với cơ quan giám sát — anh/chị chọn trường phái nào? Vì sao?”\n\n", options: { bold: true, color: DUE_COLORS.orange } },
     { text: "• Gợi ý trả lời:\n", options: { bold: true } },
     { text: "  Ưu tiên mô hình Thống kê (GLM Logistic) dù có thể kém vài điểm accuracy so với ML hộp đen, vì đáp ứng nghĩa vụ pháp lý." }
@@ -145,9 +142,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -163,16 +160,16 @@ addText(
   "💡 Bài học nghiệp vụ: Tiêu chí chọn kỹ thuật = Độ chính xác + Khả năng giải trình + Chi phí + Quy định pháp lý.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -192,7 +189,7 @@ slide46Content.addText("LỘ TRÌNH MỤC 6.2 — HƯỚNG KỸ THUẬT", { plac
 addText(
   slide46Content,
   [
-    { text: "📚 6.2.1 Thống kê & 6.2.2 Nền tảng Lý thuyết:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "📚 6.2.1 Thống kê & 6.2.2 Nền tảng Lý thuyết:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• 6.2.1 Khai phá dữ liệu Thống kê: ", options: { bold: true } },
     { text: "Kho vũ khí thống kê cổ điển (Hồi quy, GLM, ANOVA, Factor Analysis, Survival Analysis).\n\n" },
     { text: "• 6.2.2 Nền tảng Lý thuyết: ", options: { bold: true } },
@@ -202,9 +199,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -217,7 +214,7 @@ addText(
 addText(
   slide46Content,
   [
-    { text: "👁️ 6.2.3 Trực quan & 6.2.4 Học máy / Học sâu:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "👁️ 6.2.3 Trực quan & 6.2.4 Học máy / Học sâu:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• 6.2.3 Trực quan & Âm thanh: ", options: { bold: true } },
     { text: "Dùng thị giác con người như một 'thuật toán' khám phá (Visual Data Mining).\n\n" },
     { text: "• 6.2.4 Học máy & Học sâu hiện đại: ", options: { bold: true } },
@@ -227,9 +224,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -245,16 +242,16 @@ addText(
   "💡 Định hướng: Khám phá 4 trường phái kỹ thuật để làm chủ kho công cụ khai phá dữ liệu hiện đại.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }

@@ -1,5 +1,5 @@
 import { SlideGenerator } from "../../../slide-generator.ts";
-import { addText, DUE_COLORS } from "../../../template/due-template.ts";
+import { addSectionText, addTable, addText, DUE_COLORS } from "../../../template/due-template.ts";
 import { cmToInch } from "../../../utils.ts";
 
 const pptx = SlideGenerator.pptx;
@@ -9,13 +9,10 @@ const pptx = SlideGenerator.pptx;
 // ----------------------------------------------------
 const slide6Section = pptx.addSlide({ masterName: "SECTION" });
 slide6Section.addText("CHƯƠNG 6 – CÁC HƯỚNG NGHIÊN CỨU TRONG KPDL", { placeholder: "footer" });
-slide6Section.addText("6.1. HƯỚNG DỮ LIỆU", { placeholder: "title" });
-slide6Section.addText("Khai phá các loại dữ liệu phức tạp (Mining Complex Data Types)", { placeholder: "content" });
-slide6Section.addText(
-  "\"We are data rich, but information poor\" — phần lớn dữ liệu giá trị nhất KHÔNG nằm trong bảng.\n\n" +
-  "6.1.1 Khai phá chuỗi  |  6.1.2 Đồ thị & Mạng  |  6.1.3 Khai phá văn bản",
-  { placeholder: "subContent" }
-);
+addSectionText(slide6Section, "title", "6.1. HƯỚNG DỮ LIỆU");
+addSectionText(slide6Section, "content", "Khai phá các loại dữ liệu phức tạp (Mining Complex Data Types)");
+addSectionText(slide6Section, "subContent", "\"We are data rich, but information poor\" — phần lớn dữ liệu giá trị nhất KHÔNG nằm trong bảng.\n\n" +
+  "6.1.1 Khai phá chuỗi  |  6.1.2 Đồ thị & Mạng  |  6.1.3 Khai phá văn bản");
 
 // ----------------------------------------------------
 // Slide 7: CONTENT (HƯỚNG DỮ LIỆU LÀ GÌ?)
@@ -27,7 +24,7 @@ slide7Content.addText("HƯỚNG DỮ LIỆU LÀ GÌ?", { placeholder: "title" })
 addText(
   slide7Content,
   [
-    { text: "💡 Khái niệm & Động lực phát triển:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "💡 Khái niệm & Động lực phát triển:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Khái niệm: ", options: { bold: true } },
     { text: "Phát triển kỹ thuật khai phá theo đặc thù của từng loại dữ liệu, không gò ép dữ liệu vào dạng bảng quan hệ.\n\n" },
     { text: "• Động lực kinh tế số: ", options: { bold: true } },
@@ -37,9 +34,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -52,7 +49,7 @@ addText(
 addText(
   slide7Content,
   [
-    { text: "⭐ Nguyên tắc vàng trong KPDL phức tạp:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "⭐ Nguyên tắc vàng trong KPDL phức tạp:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "1. Biến đổi dữ liệu phức tạp ", options: { bold: true } },
     { text: "về dạng biểu diễn đặc trưng số (vector/chỉ số/ma trận).\n\n" },
     { text: "2. Tái sử dụng linh hoạt ", options: { bold: true } },
@@ -63,9 +60,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.orange, width: 1 },
@@ -81,16 +78,16 @@ addText(
   "💡 Quy trình chuẩn: Dữ liệu phức tạp ➔ Biểu diễn đặc trưng số ➔ Tái sử dụng mô hình Ch.3–5.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -105,7 +102,7 @@ const slide8Content = pptx.addSlide({ masterName: "CONTENT" });
 slide8Content.addText("CHƯƠNG 6 – CÁC HƯỚNG NGHIÊN CỨU TRONG KPDL", { placeholder: "footer" });
 slide8Content.addText("SO SÁNH 3 LOẠI DỮ LIỆU PHỨC TẠP", { placeholder: "title" });
 
-slide8Content.addTable(
+addTable(slide8Content, 
   [
     [
       { text: "Loại dữ liệu", options: { bold: true, fill: { color: DUE_COLORS.blue }, color: DUE_COLORS.white } },
@@ -136,8 +133,8 @@ slide8Content.addTable(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(23.8),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     border: { pt: 1, color: "CCCCCC" },
   }
 );
@@ -147,16 +144,16 @@ addText(
   "💡 Khung tổng quan: Bảng so sánh 3 loại dữ liệu phức tạp chính sẽ được nghiên cứu chi tiết trong mục 6.1.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -174,7 +171,7 @@ slide9Content.addText("LỘ TRÌNH MỤC 6.1 — HƯỚNG DỮ LIỆU", { placeh
 addText(
   slide9Content,
   [
-    { text: "🗺️ Lộ trình giải quyết 3 Nguồn dữ liệu:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🗺️ Lộ trình giải quyết 3 Nguồn dữ liệu:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• 6.1.1 Dữ liệu chuỗi: ", options: { bold: true } },
     { text: "Giải quyết Nguồn 1 (Dự báo giá VN-Index) — Demo Python: ARIMA.\n\n" },
     { text: "• 6.1.2 Đồ thị & Mạng: ", options: { bold: true } },
@@ -186,9 +183,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -201,7 +198,7 @@ addText(
 addText(
   slide9Content,
   [
-    { text: "📐 Cấu trúc bài học từng mục con:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "📐 Cấu trúc bài học từng mục con:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "1. Khái niệm & Bài toán cốt lõi\n" },
     { text: "2. Kỹ thuật & Độ đo chuyên biệt\n" },
     { text: "3. Ví dụ thực tế tại Việt Nam\n" },
@@ -212,9 +209,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -230,16 +227,16 @@ addText(
   "💡 Định hướng: Mỗi mục học sẽ liên hệ trực tiếp với 1 nguồn dữ liệu trong tình huống mở đầu để giải quyết triệt để.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }

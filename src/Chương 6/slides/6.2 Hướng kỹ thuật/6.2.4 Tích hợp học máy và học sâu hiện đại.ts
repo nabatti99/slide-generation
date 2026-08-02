@@ -1,5 +1,5 @@
 import { SlideGenerator } from "../../../slide-generator.ts";
-import { addText, DUE_COLORS } from "../../../template/due-template.ts";
+import { addSectionText, addTable, addText, DUE_COLORS } from "../../../template/due-template.ts";
 import { cmToInch } from "../../../utils.ts";
 
 const pptx = SlideGenerator.pptx;
@@ -9,13 +9,10 @@ const pptx = SlideGenerator.pptx;
 // ----------------------------------------------------
 const slide68Section = pptx.addSlide({ masterName: "SECTION" });
 slide68Section.addText("CHƯƠNG 6 – CÁC HƯỚNG NGHIÊN CỨU TRONG KPDL", { placeholder: "footer" });
-slide68Section.addText("6.2.4. TÍCH HỢP HỌC MÁY VÀ HỌC SÂU HIỆN ĐẠI", { placeholder: "title" });
-slide68Section.addText("Nội dung cập nhật ngoài giáo trình — Bản đồ thuật ngữ AI cho nhà quản lý", { placeholder: "content" });
-slide68Section.addText(
-  "\"Giáo trình dừng ở 2011–2018; thực tiễn đã đi xa — Nhà quản lý cần bản đồ mới để không lạc đường giữa các thuật ngữ AI.\"\n\n" +
-  "Ensemble Models  |  Deep Learning (CNN/LSTM/GNN/Transformer)  |  Embedding",
-  { placeholder: "subContent" }
-);
+addSectionText(slide68Section, "title", "6.2.4. TÍCH HỢP HỌC MÁY VÀ HỌC SÂU HIỆN ĐẠI");
+addSectionText(slide68Section, "content", "Nội dung cập nhật ngoài giáo trình — Bản đồ thuật ngữ AI cho nhà quản lý");
+addSectionText(slide68Section, "subContent", "\"Giáo trình dừng ở 2011–2018; thực tiễn đã đi xa — Nhà quản lý cần bản đồ mới để không lạc đường giữa các thuật ngữ AI.\"\n\n" +
+  "Ensemble Models  |  Deep Learning (CNN/LSTM/GNN/Transformer)  |  Embedding");
 
 // ----------------------------------------------------
 // Slide 69: CONTENT (KHAI PHÁ DỮ LIỆU VÀ HỌC MÁY)
@@ -27,7 +24,7 @@ slide69Content.addText("KHAI PHÁ DỮ LIỆU VÀ HỌC MÁY", { placeholder: "t
 addText(
   slide69Content,
   [
-    { text: "🤖 Phân biệt KPDL vs Học máy (Machine Learning):\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🤖 Phân biệt KPDL vs Học máy (Machine Learning):\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Khai phá dữ liệu (KPDL): ", options: { bold: true } },
     { text: "Toàn bộ QUY TRÌNH tìm tri thức từ dữ liệu lớn (Làm sạch ➔ Khai phá ➔ Diễn giải ➔ Ra quyết định) — Góc nhìn Quản trị.\n\n" },
     { text: "• Học máy (ML): ", options: { bold: true } },
@@ -37,9 +34,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -52,7 +49,7 @@ addText(
 addText(
   slide69Content,
   [
-    { text: "⏳ Dòng thời gian Phát triển Kỹ thuật:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "⏳ Dòng thời gian Phát triển Kỹ thuật:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• 1990s–2000s: ", options: { bold: true } },
     { text: "Thống kê + Cây quyết định + Luật kết hợp.\n\n" },
     { text: "• 2001–2015: ", options: { bold: true } },
@@ -66,9 +63,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.orange, width: 1 },
@@ -84,16 +81,16 @@ addText(
   "💡 Thông điệp phát triển: Mới không thay thế cũ, mà xếp thêm tầng lựa chọn — thuật toán cổ điển vẫn hoạt động hiệu quả.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -113,7 +110,7 @@ slide70Content.addText("HỌC MÁY TẬP THỂ (ENSEMBLE LEARNING)", { placehold
 addText(
   slide70Content,
   [
-    { text: "🌲 Ý tưởng Ensemble: Trí tuệ Đám đông Thuật toán:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🌲 Ý tưởng Ensemble: Trí tuệ Đám đông Thuật toán:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Bagging — Random Forest: ", options: { bold: true } },
     { text: "Trồng hàng trăm cây quyết định trên mẫu ngẫu nhiên, lấy phiếu bầu ➔ Giảm overfit, cực kỳ ổn định.\n\n" },
     { text: "• Boosting — Gradient Boosting (XGBoost, LightGBM): ", options: { bold: true } },
@@ -123,9 +120,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -138,19 +135,21 @@ addText(
 addText(
   slide70Content,
   [
-    { text: "💼 Vì sao Quan trọng với Học viên Kinh tế?:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "💼 Vì sao Quan trọng với Học viên Kinh tế?:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Dữ liệu doanh nghiệp: ", options: { bold: true } },
     { text: "Dữ liệu giao dịch, CRM, tài chính chủ yếu là DỮ LIỆU BẢNG ➔ XGBoost thường thắng cả Học sâu với chi phí rẻ hơn nhiều.\n\n" },
     { text: "• Giải diễn giải gián tiếp: ", options: { bold: true } },
-    { text: "Dùng **SHAP values** để giải thích đóng góp của từng biến số vào kết quả dự báo." }
+    { text: "Dùng ", },
+    { text: "SHAP values", options: { bold: true } },
+    { text: " để giải thích đóng góp của từng biến vào kết quả dự báo." }
   ],
   {
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.orange, width: 1 },
@@ -166,16 +165,16 @@ addText(
   "💡 Chiến lược hai lớp: Nhiều ngân hàng dùng Scorecard (Logistic) cho duyệt vay chính thức và chạy XGBoost làm mô hình tham chiếu.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -192,7 +191,7 @@ const slide71Content = pptx.addSlide({ masterName: "CONTENT" });
 slide71Content.addText("CHƯƠNG 6 – CÁC HƯỚNG NGHIÊN CỨU TRONG KPDL", { placeholder: "footer" });
 slide71Content.addText("HỌC SÂU & CÁC KIẾN TRÚC CHÍNH", { placeholder: "title" });
 
-slide71Content.addTable(
+addTable(slide71Content, 
   [
     [
       { text: "Kiến trúc Học sâu", options: { bold: true, fill: { color: DUE_COLORS.blue }, color: DUE_COLORS.white } },
@@ -212,7 +211,7 @@ slide71Content.addTable(
     [
       { text: "Transformer (BERT / PhoBERT)", options: { bold: true, color: DUE_COLORS.blue } },
       { text: "Ngôn ngữ tự nhiên, xử lý song song" },
-      { text: "6.1.3 — Sentiment review TMĐT tiếng Việt (~91% accuracy)" },
+      { text: "6.1.3 — PhoBERT cho phân tích cảm xúc tiếng Việt" },
     ],
     [
       { text: "GNN (Graph Neural Net)", options: { bold: true, color: DUE_COLORS.orange } },
@@ -224,8 +223,8 @@ slide71Content.addTable(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(23.8),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     border: { pt: 1, color: "CCCCCC" },
   }
 );
@@ -235,16 +234,16 @@ addText(
   "💡 Điều kiện phát huy Học sâu: Dữ liệu cực lớn + Tính toán mạnh (GPU) + Bài toán phi cấu trúc (ảnh, văn bản, âm thanh).",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -264,7 +263,7 @@ slide72Content.addText("EMBEDDING: BIẾN ĐỔI SỐ HIỆN ĐẠI", { placehol
 addText(
   slide72Content,
   [
-    { text: "🔮 Bản chất của Embedding:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🔮 Bản chất của Embedding:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Định nghĩa: ", options: { bold: true } },
     { text: "Mô hình TỰ HỌC cách 'dịch' đối tượng thành vector sao cho đối tượng giống nhau nằm gần nhau trong không gian số.\n\n" },
     { text: "• Phiên bản tự động hóa: ", options: { bold: true } },
@@ -274,9 +273,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -289,7 +288,7 @@ addText(
 addText(
   slide72Content,
   [
-    { text: "📦 Các loại Embedding Phổ biến:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "📦 Các loại Embedding Phổ biến:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Word embedding (word2vec, PhoBERT):\n", options: { bold: true } },
     { text: "  Từ/câu ➔ Vector ('tốt' và 'ổn' nằm gần nhau).\n\n" },
     { text: "• Node embedding (node2vec):\n", options: { bold: true } },
@@ -301,9 +300,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -319,16 +318,16 @@ addText(
   "💡 Phép toán trực giác: vector('vua') − vector('đàn ông') + vector('phụ nữ') ≈ vector('nữ hoàng').",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -345,7 +344,7 @@ const slide73Content = pptx.addSlide({ masterName: "CONTENT" });
 slide73Content.addText("CHƯƠNG 6 – CÁC HƯỚNG NGHIÊN CỨU TRONG KPDL", { placeholder: "footer" });
 slide73Content.addText("SO SÁNH MÔ HÌNH CỔ ĐIỂN & HỌC SÂU", { placeholder: "title" });
 
-slide73Content.addTable(
+addTable(slide73Content, 
   [
     [
       { text: "Tiêu chí ra quyết định", options: { bold: true, fill: { color: DUE_COLORS.blue }, color: DUE_COLORS.white } },
@@ -377,8 +376,8 @@ slide73Content.addTable(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(23.8),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     border: { pt: 1, color: "CCCCCC" },
   }
 );
@@ -388,16 +387,16 @@ addText(
   "💡 Quy tắc quản trị: Luôn dựng Baseline mô hình cổ điển trước; chỉ đầu tư Học sâu khi giá trị tăng thêm bù được chi phí.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -418,15 +417,15 @@ slide74Content.addText("ỨNG DỤNG HỌC MÁY & HỌC SÂU", { placeholder: "t
 addText(
   slide74Content,
   [
-    { text: "📈 Chứng khoán (LSTM vs ARIMA):\n", options: { bold: true, color: DUE_COLORS.green } },
-    { text: "Nghiên cứu VN chứng minh LSTM nhỉnh hơn ARIMA ở giai đoạn biến động mạnh nhưng đòi tính toán lớn." }
+    { text: "📈 Chứng khoán — cái giá của độ chính xác:\n", options: { bold: true, color: DUE_COLORS.green } },
+    { text: "Khép lại so sánh ARIMA vs LSTM ở 6.1.1: phần chính xác tăng thêm đổi bằng hạ tầng GPU, dữ liệu dài hơn và một mô hình không giải trình được." }
   ],
   {
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
@@ -448,8 +447,8 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
@@ -466,14 +465,14 @@ addText(
   slide74Content,
   [
     { text: "🇻🇳 Xử lý Tiếng Việt (PhoBERT):\n", options: { bold: true, color: DUE_COLORS.blue } },
-    { text: "PhoBERT (VinAI) đạt ~91% accuracy cho phân tích cảm xúc TMĐT & trợ lý ảo ngân hàng/viễn thông." }
+    { text: "PhoBERT (VinAI) là mô hình mở — doanh nghiệp VN không phải huấn luyện lại từ đầu; nền cho trợ lý ảo ngân hàng/viễn thông." }
   ],
   {
     x: cmToInch(0.8),
-    y: cmToInch(5.8),
+    y: 0, // trôi dưới thẻ cùng cột
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
@@ -494,10 +493,10 @@ addText(
   ],
   {
     x: cmToInch(13.1),
-    y: cmToInch(5.8),
+    y: 0, // trôi dưới thẻ cùng cột
     w: cmToInch(11.5),
-    h: cmToInch(3.5),
-    fontSize: 10.5,
+    h: 0, // hug content
+    fontSize: 11.5,
     lineSpacing: 13.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
@@ -514,16 +513,16 @@ addText(
   "💡 Thực tiễn Việt Nam: Học máy & Học sâu đang thâm nhập mạnh mẽ từ chấm điểm tín dụng đến eKYC và trợ lý ảo.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
@@ -543,7 +542,7 @@ slide75Content.addText("TÓM TẮT 6.2.4 & KHÉP LẠI MỤC 6.2", { placeholder
 addText(
   slide75Content,
   [
-    { text: "📌 Tổng kết 4 Trường phái Kỹ thuật (Mục 6.2):\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "📌 Tổng kết 4 Trường phái Kỹ thuật (Mục 6.2):\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• 6.2.1 Thống kê: ", options: { bold: true } },
     { text: "Suy diễn, kiểm định, giải trình pháp lý.\n\n" },
     { text: "• 6.2.2 Lý thuyết: ", options: { bold: true } },
@@ -557,9 +556,9 @@ addText(
     x: cmToInch(0.8),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightGreen },
     shape: "roundRect",
@@ -572,7 +571,7 @@ addText(
 addText(
   slide75Content,
   [
-    { text: "🚀 Chuyển giao tiếp theo — Mục 6.3:\n\n", options: { bold: true, fontSize: 12 } },
+    { text: "🚀 Chuyển giao tiếp theo — Mục 6.3:\n\n", options: { bold: true, fontSize: 13.5 } },
     { text: "• Khép lại 6.2: ", options: { bold: true } },
     { text: "Đã giải quyết trọn vẹn câu hỏi 'Khai phá BẰNG GÌ?'.\n\n" },
     { text: "• Sang Mục 6.3 — Hướng ứng dụng:\n", options: { bold: true, color: DUE_COLORS.orange } },
@@ -582,9 +581,9 @@ addText(
     x: cmToInch(13.1),
     y: cmToInch(2.0),
     w: cmToInch(11.5),
-    h: cmToInch(7.5),
-    fontSize: 10.5,
-    lineSpacing: 14,
+    h: 0, // hug content
+    fontSize: 11.5,
+    lineSpacing: 15.5,
     color: DUE_COLORS.darkText,
     fill: { color: DUE_COLORS.lightBg },
     line: { color: DUE_COLORS.blue, width: 1 },
@@ -600,16 +599,16 @@ addText(
   "💡 Khép lại 6.2: Đã làm chủ kho phương pháp luận khai phá dữ liệu từ Thống kê cổ điển đến AI/Deep Learning hiện đại.",
   {
     x: cmToInch(0.8),
-    y: cmToInch(10.0),
+    y: 0, // trôi xuống dưới nội dung
     w: cmToInch(23.8),
-    h: cmToInch(1.9),
-    fontSize: 13.5,
-    lineSpacing: 18,
+    h: 0, // ôm nội dung
+    fontSize: 12.5,
+    lineSpacing: 16,
     color: DUE_COLORS.white,
     fill: { color: DUE_COLORS.green },
     bold: true,
     shape: "roundRect",
-    margin: 12,
+    margin: 8,
     rectRadius: 0.1,
     valign: "middle",
   }
